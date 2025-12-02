@@ -1,0 +1,2131 @@
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Samsung */
+header.samsung-header {
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 0;
+    position: relative;
+    z-index: 10;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    height: 72px;
+    width: 100%;
+}
+
+.header-logo {
+    flex-shrink: 0;
+}
+
+.header-logo img {
+    height: 38px;
+    margin-right: 12px;
+}
+
+.header-menu {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    justify-content: flex-start;
+    min-width: 0;
+}
+
+.header-menu a {
+    color: #222;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 1.08rem;
+    padding: 8px 10px;
+    border-radius: 4px;
+    transition: background 0.15s;
+}
+
+.header-menu a:hover {
+    background: #f2f2f2;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 0;
+    gap: 0 18px;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 0 18px !important;
+}
+
+.header-icons a {
+    color: #222;
+    font-size: 1.3rem;
+    text-decoration: none;
+    margin-left: 2px;
+}
+
+.header-search {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.header-search input[type="text"] {
+    width: 210px;
+    border-radius: 20px;
+    border: 1px solid #e0e0e0;
+    background: #fafbfc;
+    font-size: 1rem;
+    padding: 7px 14px 7px 38px;
+    transition: box-shadow 0.2s;
+    box-shadow: none;
+}
+
+.header-search input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #0074d9;
+}
+
+.header-search .fa-search, .header-right a i.fa-shopping-cart {
+    color: #222;
+    font-size: 1.15rem;
+    font-weight: 400;
+    background: none;
+    box-shadow: none;
+}
+
+.header-right a i.fa-shopping-cart {
+    font-size: 1.35rem;
+}
+
+.header-right .account-dropdown svg {
+    stroke: #222 !important;
+    fill: none !important;
+    background: none;
+}
+
+.header-right a, .header-right .account-dropdown {
+    margin: 0 8px;
+    display: flex;
+    align-items: center;
+    background: none;
+    box-shadow: none;
+}
+
+.account-dropdown .dropdown-toggle {
+    min-width: 36px;
+}
+
+.account-menu {
+    background: #fff !important;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    border-radius: 16px;
+    padding: 6px 0;
+    min-width: 260px;
+    max-width: 320px;
+    width: 260px;
+    display: none;
+    z-index: 100;
+    font-family: 'SamsungOne', Arial, sans-serif;
+    overflow: hidden;
+}
+
+.account-menu a,
+.account-menu a:link,
+.account-menu a:visited,
+.account-menu a:active {
+    color: #111 !important;
+    background: none !important;
+    font-size: 1.05rem;
+    text-decoration: none;
+    padding: 11px 24px 11px 18px;
+    transition: background 0.18s, color 0.18s, font-weight 0.05s;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    border-radius: 0;
+    display: block;
+    white-space: nowrap;
+    font-family: 'SamsungOne', Arial, Helvetica, sans-serif;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    font-variation-settings: 'wght' 500;
+    box-sizing: border-box;
+}
+
+.account-menu a:hover {
+    background: #f5f5f7 !important;
+    color: #111 !important;
+    font-weight: 600;
+    font-variation-settings: 'wght' 600;
+}
+
+.account-menu .divider {
+    height: 1px;
+    background: #ececec;
+    margin: 0 12px;
+    border: none;
+}
+
+.account-menu .deconnexion {
+    color: #d00 !important;
+}
+
+.header-search svg, .header-right a svg, .header-right .account-dropdown svg {
+    display: inline-block;
+    vertical-align: middle;
+    stroke: #222;
+    fill: none;
+    background: none;
+}
+
+.header-search svg {
+    width: 18px;
+    height: 18px;
+}
+
+.header-right a svg {
+    width: 22px;
+    height: 22px;
+}
+
+.header-right .account-dropdown svg {
+    width: 24px;
+    height: 24px;
+}
+
+@media (max-width: 900px) {
+    .header-inner {
+        flex-direction: column;
+        height: auto;
+        padding: 0 8px;
+    }
+    .header-menu {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    .header-search input[type="text"] {
+        width: 120px;
+    }
+    .header-right {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+/* Navigation principale */
+nav#menu_haut {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    background-color: transparent;
+}
+
+nav#menu_haut ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav#menu_haut ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+nav#menu_haut ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+nav#menu_haut ul li a:hover,
+nav#menu_haut ul li a.actif {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+    color: #fff;
+}
+
+/* Styles pour les menus déroulants */
+.categories-dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    z-index: 1000;
+    margin-top: 5px;
+}
+
+.categories-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.categories-dropdown .dropdown-menu a {
+    color: #333 !important;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.95em;
+    transition: background-color 0.2s;
+}
+
+.categories-dropdown .dropdown-menu a:hover {
+    background-color: #f8f9fa;
+    color: #1a2a3a !important;
+}
+
+.account-dropdown .account-menu {
+    display: none;
+    position: absolute;
+    background-color: #1a1a1a;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    z-index: 1000;
+    margin-top: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.account-dropdown:hover .account-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.account-dropdown .account-menu {
+    display: block;
+}
+
+.account-dropdown .account-menu a {
+    color: #fff !important;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.95em;
+    transition: background-color 0.2s;
+}
+
+.account-dropdown .account-menu a:hover {
+    background-color: #333;
+}
+
+.account-dropdown .divider {
+    height: 1px;
+    background-color: #404040;
+    margin: 8px 0;
+}
+
+/* Container principal */
+.main-container {
+    max-width: 100vw;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* Section principale */
+section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 30px;
+}
+
+/* Articles (produits) */
+article {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 30px;
+    padding: 25px;
+    border-bottom: 1px solid #eee;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+article:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+article:last-child {
+    border-bottom: none;
+}
+
+article img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+article aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+article h1 {
+    font-size: 1.5em;
+    color: #1a237e;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+article h3 {
+    font-size: 0.95em;
+    color: #666;
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+article .prix {
+    font-size: 1.8em;
+    color: #1a237e;
+    font-weight: 600;
+    margin: 15px 0;
+}
+
+/* Formulaires */
+form {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+input[type="number"] {
+    width: 80px;
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 0.95em;
+    transition: border-color 0.2s ease;
+}
+
+input[type="number"]:focus {
+    border-color: #1a237e;
+    outline: none;
+}
+
+.btn-appliquer {
+    width: 100% !important;
+    padding: 1.1rem 0 !important;
+    background: #000 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 100px !important;
+    cursor: pointer !important;
+    font-size: 1.12rem !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    transition: background 0.2s !important;
+    box-shadow: none !important;
+    margin-top: 8px !important;
+    min-height: 48px !important;
+    line-height: 1.2 !important;
+    display: block !important;
+}
+
+.btn-appliquer:hover {
+    background: #222 !important;
+}
+
+.btn-commander {
+    display: block !important;
+    width: 100% !important;
+    padding: 1.15rem 0 !important;
+    background: #0074e4 !important;
+    color: #fff !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    border-radius: 100px !important;
+    margin-top: 1.5rem !important;
+    font-weight: 600 !important;
+    font-size: 1.12rem !important;
+    box-shadow: none !important;
+    border: none !important;
+    transition: background 0.2s !important;
+    min-height: 48px !important;
+    line-height: 1.2 !important;
+}
+
+.btn-commander:hover {
+    background: #005bb5 !important;
+}
+
+/* Panier */
+.panier-container {
+    max-width: none !important;
+    width: 100vw !important;
+    margin: 0 auto;
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 3.5rem 0.5rem 3.5rem 0 !important;
+    display: flex;
+    gap: 7rem !important;
+    justify-content: center;
+}
+
+.panier-produits {
+    flex: 1 1 0%;
+    min-width: 0;
+    max-width: 900px;
+    width: 900px;
+    margin: 0;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 40px 40px 40px 40px;
+}
+
+.table-panier {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 20px 0;
+}
+
+.table-panier th {
+    background-color: #f8f9fa;
+    color: #1a237e;
+    font-weight: 600;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.table-panier td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.table-panier tr:hover {
+    background-color: #f8f9fa;
+}
+
+.btn-commander:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(to right, #1a2a3a, #2c3e50);
+    color: #fff;
+    padding: 2rem;
+    margin-top: auto;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+footer nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+footer nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    list-style: none;
+}
+
+footer nav ul li a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.2s ease;
+}
+
+footer nav ul li a:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+    .main-container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav#menu_haut {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav#menu_haut ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    article {
+        grid-template-columns: 1fr;
+    }
+
+    article img {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .dropdown-menu {
+        position: static;
+        display: none;
+        min-width: 100%;
+        grid-template-columns: 1fr;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background-color: rgba(255,255,255,0.05);
+    }
+
+    .dropdown.active .dropdown-menu {
+        display: grid;
+    }
+
+    .dropdown-toggle::after {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        padding: 15px;
+    }
+
+    section {
+        padding: 15px;
+    }
+
+    article {
+        padding: 15px;
+    }
+
+    nav#menu_haut ul li a {
+        padding: 6px 12px;
+    }
+}
+
+/* Styles pour les pages d'authentification */
+body.auth-page {
+    background-color: #fff;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'SamsungOne', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.auth-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    max-width: 460px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.auth-form {
+    width: 100%;
+    background-color: #fff;
+    padding: 0;
+}
+
+.auth-header {
+    margin-bottom: 48px;
+    text-align: center;
+}
+
+.auth-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+    color: #000;
+    letter-spacing: -0.4px;
+}
+
+.auth-subtitle {
+    font-size: 0.875rem;
+    color: #737373;
+    margin-top: 32px;
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    color: #737373;
+    font-size: 0.875rem;
+    margin-bottom: 8px;
+    font-weight: 400;
+}
+
+.form-control {
+    width: 100%;
+    height: 48px;
+    background-color: #fff;
+    border: 1px solid #d6d6d6;
+    border-radius: 4px;
+    padding: 0 16px;
+    font-size: 1rem;
+    color: #000;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    border-color: #000;
+    outline: none;
+}
+
+.checkbox-wrapper {
+    margin: 24px 0;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: #000;
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #737373;
+    cursor: pointer;
+}
+
+.btn {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-next {
+    background-color: #000;
+    color: #fff;
+}
+
+.btn-next:hover {
+    background-color: #333;
+}
+
+.auth-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 24px 0 40px;
+}
+
+.auth-links .link {
+    color: #0074e4;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+}
+
+.auth-links .link:hover {
+    text-decoration: underline;
+}
+
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.btn-social {
+    width: 100%;
+    height: 48px;
+    border: 1px solid #d6d6d6;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-social:hover {
+    background-color: #f5f5f5;
+    border-color: #000;
+}
+
+.btn-social-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    height: 100%;
+    gap: 12px;
+}
+
+.btn-social img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.btn-social span {
+    color: #000;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.qr-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 0.625rem;
+    line-height: 1.2;
+    text-align: center;
+    font-weight: 600;
+    border: 2px solid #000;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Style du menu déroulant Mon compte */
+.account-dropdown {
+    position: relative;
+}
+
+.account-dropdown .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.account-dropdown .fa-user {
+    font-size: 1.1em;
+    color: #fff;
+}
+
+.account-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    min-width: 260px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    z-index: 1000;
+    margin-top: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+    border: 1px solid #d6d6d6;
+}
+
+.account-dropdown:hover .account-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.account-dropdown .account-menu {
+    display: block;
+}
+
+.account-menu a {
+    color: #000 !important;
+    padding: 16px 24px;
+    text-decoration: none;
+    display: block;
+    font-size: 13px;
+    transition: background-color 0.2s;
+    font-weight: normal;
+}
+
+.account-menu a:hover {
+    background-color: #f7f7f7;
+}
+
+.account-menu .divider {
+    height: 1px;
+    background-color: #d6d6d6;
+    margin: 0;
+}
+
+.account-menu .deconnexion {
+    color: #ff4444;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+}
+
+.account-menu .deconnexion:hover {
+    background-color: #ffeeee;
+}
+
+.account-menu .deconnexion i {
+    font-size: 16px;
+}
+
+/* Ajustement des autres éléments pour correspondre à la nouvelle palette */
+nav#menu_gauche h1 {
+    color: #2c3e50;
+}
+
+nav#menu_gauche ul li a:hover {
+    color: #2c3e50;
+}
+
+button[type="submit"],
+.btn-commander {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+button[type="submit"]:hover,
+.btn-commander:hover {
+    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+}
+
+/* Styles spécifiques pour le panier */
+.panier-vide {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2em;
+    color: #666;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.form-panier {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.table-panier {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table-panier th {
+    background-color: #f8f9fa;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #2c3e50;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.table-panier td {
+    padding: 15px;
+    vertical-align: middle;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.panier-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.panier-nom {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.input-quantite {
+    width: 70px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.prix-unitaire, .sous-total {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.btn-supprimer {
+    padding: 8px 12px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.btn-supprimer:hover {
+    background-color: #c82333;
+}
+
+.total-label {
+    text-align: right;
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #2c3e50;
+}
+
+.total-amount {
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #2c3e50;
+}
+
+.panier-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+}
+
+.btn-vider-panier, .btn-commander {
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-vider-panier {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-commander {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-vider-panier:hover {
+    background-color: #5a6268;
+}
+
+.btn-commander:hover {
+    background-color: #218838;
+}
+
+/* Style pour le bouton 'Continuer mes achats' dans le panier vide */
+.panier-vide .btn-commander {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .form-panier {
+        padding: 10px;
+    }
+
+    .table-panier {
+        font-size: 0.9em;
+    }
+
+    .panier-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .input-quantite {
+        width: 60px;
+    }
+
+    .btn-supprimer {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+
+    .panier-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-vider-panier, .btn-commander {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Styles pour le profil client */
+.profil-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.profil-box {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 30px;
+}
+
+.profil-box h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.profil-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.profil-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.btn-deconnexion {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #e74c3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-deconnexion:hover {
+    background-color: #c0392b;
+}
+
+/* Styles pour les produits */
+.product-info {
+    flex: 1;
+}
+
+.category {
+    display: inline-block;
+    background-color: #f0f2f5;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    color: #1a237e;
+    margin: 10px 0;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-controls label {
+    color: #666;
+    font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+    .product-info {
+        text-align: center;
+    }
+
+    form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .quantity-controls {
+        margin-bottom: 15px;
+    }
+}
+
+/* Panier vide amélioré */
+.panier-vide-wrapper {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.panier-vide-amelioree {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    padding: 40px 32px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 320px;
+    max-width: 95vw;
+}
+.panier-vide-icone {
+    margin-bottom: 18px;
+}
+.panier-vide-titre {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 22px;
+    margin-top: 0;
+    text-align: center;
+}
+.panier-vide-btn {
+    font-size: 1.1rem;
+    padding: 14px 32px;
+    border-radius: 8px;
+    background: #22334a;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    box-shadow: 0 2px 8px rgba(34,51,74,0.08);
+    transition: background 0.2s;
+    margin-top: 10px;
+    text-decoration: none;
+    display: inline-block;
+}
+.panier-vide-btn:hover {
+    background: #2d6cdf;
+    color: #fff;
+}
+footer {
+    margin-top: auto;
+}
+
+/* Panier vide Samsung - version plus grande et centrée */
+.panier-vide-samsung-wrapper {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.panier-vide-samsung {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    box-shadow: none;
+    padding: 0 16px;
+}
+.panier-vide-icone {
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: center;
+}
+.panier-vide-icone svg {
+    width: 48px;
+    height: 48px;
+}
+.panier-vide-titre {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    margin-top: 0;
+    letter-spacing: -1px;
+    text-align: center;
+}
+.panier-vide-soustitre {
+    color: #444;
+    font-size: 1.08rem;
+    margin-bottom: 28px;
+    text-align: center;
+    max-width: 480px;
+}
+.panier-vide-actions {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 22px;
+}
+.btn-panier-vide {
+    display: inline-block;
+    text-decoration: none !important;
+    color: #222 !important;
+    background: #fff;
+    border: 2px solid #222;
+    border-radius: 18px;
+    padding: 16px 38px;
+    font-size: 1.08rem;
+    font-weight: 500;
+    min-width: 180px;
+    height: 48px;
+    line-height: 22px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.btn-panier-blue {
+    background: #0074e4 !important;
+    color: #fff !important;
+    border: 2px solid #0074e4 !important;
+}
+.btn-panier-blue:hover {
+    background: #005bb5 !important;
+    border-color: #005bb5 !important;
+}
+.btn-panier-outline:hover {
+    background: #f5f5f5 !important;
+    color: #111 !important;
+    border-color: #111 !important;
+}
+
+/* Bloc modes de paiement */
+.bloc-modes-paiement {
+    margin: 24px auto 0 auto;
+}
+.titre-modes-paiement {
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+}
+.logos-paiement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 12px;
+}
+.logos-paiement img {
+    height: 22px;
+    padding: 1px 5px;
+    border-radius: 4px;
+}
+.texte-modes-paiement,
+.liens-modes-paiement a {
+    font-size: 0.92rem;
+}
+
+/* Centrage et style fidèle Samsung pour le panier vide */
+.panier-vide-samsung, .bloc-modes-paiement {
+    text-align: center;
+}
+.panier-vide-icone {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+.panier-vide-actions {
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+.btn-panier-vide {
+    display: inline-block;
+    text-decoration: none !important;
+    color: #222 !important;
+    background: #fff;
+    border: 1.5px solid #222;
+    border-radius: 12px;
+    padding: 8px 22px;
+    font-size: 0.98rem;
+    font-weight: 500;
+    min-width: 140px;
+    height: 38px;
+    line-height: 20px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.btn-panier-blue {
+    background: #0074e4 !important;
+    color: #fff !important;
+    border: 1.5px solid #0074e4 !important;
+}
+.btn-panier-blue:hover {
+    background: #005bb5 !important;
+    border-color: #005bb5 !important;
+}
+.btn-panier-outline:hover {
+    background: #f5f5f5 !important;
+    color: #111 !important;
+    border-color: #111 !important;
+}
+.liens-modes-paiement a {
+    color: #0074e4 !important;
+    text-decoration: underline !important;
+    font-size: 0.92rem;
+    margin-bottom: 2px;
+    display: inline-block;
+}
+.liens-modes-paiement a:hover {
+    color: #005bb5 !important;
+}
+.logos-paiement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 12px;
+}
+.logos-paiement img {
+    height: 22px;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    object-fit: contain;
+    display: inline-block;
+}
+
+.badge-panier-header {
+    position: absolute;
+    top: -11px;
+    right: -11px;
+    background: #2196f3;
+    color: #fff;
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+    z-index: 2;
+    line-height: 22px;
+    transition: background 0.2s;
+    text-align: center;
+}
+
+/* Panier produits façon Samsung V4 - ultra fidèle */
+.produit-item-samsung-v4 {
+    display: flex;
+    align-items: stretch;
+    gap: 40px;
+    padding: 40px 0 32px 0;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    min-height: 170px;
+}
+.produit-img-samsung-v4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 130px;
+    min-height: 130px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    margin-right: 8px;
+}
+.produit-img-samsung-v4 img {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: none;
+}
+.produit-center-samsung-v4 {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 0;
+}
+.produit-nom-samsung-v4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 6px;
+    font-family: 'SamsungOne', 'Segoe UI', Arial, sans-serif;
+    line-height: 1.15;
+    letter-spacing: 0;
+}
+.produit-details-samsung-v4 {
+    font-size: 0.82rem;
+    color: #222;
+    font-weight: 400;
+    gap: 1px;
+    line-height: 1.3;
+}
+.produit-libelle-samsung-v4 {
+    font-size: 0.98rem;
+    color: #222;
+    font-weight: 400;
+}
+.produit-ref-samsung-v4 {
+    font-size: 0.95rem;
+    color: #444;
+    font-weight: 400;
+}
+.produit-stock-samsung-v4 {
+    font-size: 0.95rem;
+    color: #007a1e;
+    font-weight: 500;
+}
+.produit-prix-samsung-v4 {
+    flex: 1;
+    min-width: 200px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+    margin-top: 0;
+    position: relative;
+    justify-content: flex-start;
+}
+.btn-supprimer-samsung-v4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    transition: background 0.15s;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+.btn-supprimer-samsung-v4 svg {
+    width: 20px;
+    height: 20px;
+    stroke: #bbb;
+    transition: stroke 0.2s;
+}
+.btn-supprimer-samsung-v4:hover svg {
+    stroke: #d00;
+    background: #f7eaea;
+    border-radius: 50%;
+}
+.prix-actuel-samsung-v4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 2px;
+    line-height: 1.1;
+}
+.prix-barre-samsung-v4 {
+    font-size: 0.98rem;
+    color: #888;
+    text-decoration: line-through;
+    margin-bottom: 2px;
+}
+.economie-samsung-v4 {
+    color: #2196f3;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+.details-prix-samsung-v4 {
+    font-size: 0.92rem;
+    color: #444;
+    margin-bottom: 2px;
+    font-weight: 400;
+}
+.actions-droite-samsung-v4 {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-top: 18px;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    border: 1.5px solid #e0e0e0;
+    padding: 0 8px;
+    height: 44px;
+    justify-content: flex-end;
+}
+.input-quantite-samsung-v4 {
+    width: 44px;
+    height: 38px;
+    text-align: center;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    background: #fff;
+    margin: 0 2px;
+    outline: none;
+}
+.btn-quantite-v4 {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    color: #222;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s, border 0.15s;
+    padding: 0;
+    outline: none;
+}
+.btn-quantite-v4:hover {
+    background: #f2f2f2;
+}
+@media (max-width: 900px) {
+    .produit-item-samsung-v4 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+    .produit-prix-samsung-v4 {
+        min-width: 0;
+        text-align: left;
+        align-items: flex-start;
+    }
+    .actions-droite-samsung-v4 {
+        margin-top: 12px;
+        box-shadow: none;
+        border: none;
+    }
+}
+
+.recap-tva {
+    font-size: 0.95rem;
+    color: #222;
+    margin-top: 2px;
+    margin-bottom: 18px;
+    text-align: right;
+}
+.financement-info-samsung {
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fafbfc;
+    padding: 18px 18px 12px 18px;
+    margin-top: 18px;
+    margin-bottom: 0;
+    font-size: 0.98rem;
+}
+.financement-titres {
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+.financement-texte {
+    font-size: 0.98rem;
+    color: #222;
+    margin-top: 4px;
+    line-height: 1.5;
+}
+.financement-texte b {
+    font-weight: 500;
+}
+.financement-link {
+    color: #0074e4;
+    text-decoration: underline;
+    font-weight: 500;
+}
+.financement-link:hover {
+    color: #005bb5;
+}
+
+.recap-total-samsung {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    gap: 12px;
+}
+.recap-total-labels {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #111;
+}
+.recap-total-ttc {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 2px;
+}
+.recap-tva-label {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: #111;
+    margin-top: 2px;
+}
+.recap-total-montants {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+.recap-total-prix {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 2px;
+}
+.recap-tva-prix {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #111;
+    margin-top: 2px;
+}
+
+.financement-box-samsung {
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fafbfc;
+    padding: 18px 18px 12px 18px;
+    margin-top: 18px;
+    margin-bottom: 0;
+    font-size: 0.98rem;
+}
+.financement-ligne {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 1.01rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+.financement-label {
+    color: #111;
+    font-weight: 500;
+    max-width: 150px;
+    display: inline-block;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+}
+.financement-montant {
+    color: #111;
+    font-weight: 500;
+    font-size: 1.01rem;
+    margin-top: 0.1em;
+}
+.financement-separateur {
+    border: none;
+    border-top: 1.5px solid #bbb;
+    margin: 10px 0 12px 0;
+}
+.financement-titres {
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+.financement-texte {
+    font-size: 0.98rem;
+    color: #222;
+    margin-top: 4px;
+    line-height: 1.5;
+}
+.financement-link {
+    color: #0074e4;
+    text-decoration: underline;
+    font-weight: 500;
+}
+.financement-link:hover {
+    color: #005bb5;
+}
+
+.recap-avantages-samsung {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.recap-avantage {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.98rem;
+    color: #222;
+    background: #fff;
+    border-radius: 7px;
+    padding: 7px 0 7px 0;
+}
+.recap-icone {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.recap-icone img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    display: block;
+}
+.recap-link {
+    color: #0074e4;
+    text-decoration: underline;
+    font-weight: 500;
+    margin-left: 2px;
+}
+.recap-link:hover {
+    color: #005bb5;
+}
+
+.code-promo-samsung {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+.code-promo-samsung input[type="text"] {
+    flex: 1 1 auto;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 100px;
+    padding: 0 18px;
+    font-size: 1rem;
+    outline: none;
+    background: #fff;
+}
+.btn-appliquer-samsung {
+    height: 40px;
+    padding: 0 22px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-left: 0;
+    box-shadow: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-appliquer-samsung:hover {
+    background: #222;
+}
+
+.recap-separateur-samsung {
+    border: none;
+    border-top: 1.5px solid #e0e0e0;
+    margin: 18px 0 18px 0;
+    width: 100%;
+}
+
+.panier-recap {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 1.5rem;
+    width: 420px !important;
+    min-width: 420px !important;
+    max-width: 420px !important;
+    margin-right: 0;
+}
+
+/* Styles supplémentaires pour le header */
+.header-left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+}
+
+.cart-icon {
+    margin: 0 8px;
+    display: flex;
+    align-items: center;
+    background: none;
+    box-shadow: none;
+    position: relative;
+}
+
+.account-icon {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    vertical-align: middle;
+    background: none;
+}
+
+.user-name {
+    margin-left: 7px;
+    font-weight: 500;
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.categories-dropdown {
+    position: relative;
+}
+
+.categories-dropdown .dropdown-menu {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 8px;
+    padding: 8px 0;
+    min-width: 180px;
+    display: none;
+    z-index: 100;
+}
+
+.categories-dropdown .dropdown-menu a {
+    display: block;
+    padding: 8px 18px;
+}
+
+.categories-dropdown .dropdown-toggle i {
+    font-size: 0.9em;
+}
+
+/* Styles pour la page des commandes */
+.commandes-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    padding: 32px 24px;
+}
+
+.commandes-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.commandes-title i {
+    color: #2d6cdf;
+    font-size: 2.1rem;
+}
+
+.commande-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    margin-bottom: 32px;
+    padding: 24px 20px;
+    background: #fafbfc;
+    transition: box-shadow 0.2s;
+}
+
+.commande-card:hover {
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.commande-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.commande-id {
+    font-weight: 600;
+    color: #2d6cdf;
+    display: flex;
+    align-items: center;
+}
+
+.commande-id i {
+    margin-right: 7px;
+    color: #2d6cdf;
+}
+
+.commande-date {
+    color: #888;
+    font-size: 1rem;
+}
+
+.commande-total {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.commande-produits {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.produit-item {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 8px 14px;
+    min-width: 220px;
+    flex: 1 1 220px;
+}
+
+.produit-img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 14px;
+    border: 1px solid #e0e0e0;
+}
+
+.produit-details {
+    flex: 1;
+}
+
+.produit-nom {
+    font-weight: 500;
+    color: #222;
+    margin-bottom: 2px;
+}
+
+.produit-qte {
+    color: #666;
+    font-size: 0.98rem;
+}
+
+.commande-empty {
+    text-align: center;
+    color: #888;
+    font-size: 1.2rem;
+    margin-top: 40px;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #2d6cdf;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #1a5bc7;
+}
+
+@media (max-width: 600px) {
+    .commandes-container {
+        padding: 12px 2px;
+    }
+    .commande-card {
+        padding: 14px 6px;
+    }
+    .commande-produits {
+        gap: 8px;
+    }
+    .produit-item {
+        min-width: 120px;
+        padding: 6px 4px;
+    }
+    .produit-img {
+        width: 36px;
+        height: 36px;
+        margin-right: 7px;
+    }
+}
+
+/* Correction finale : texte noir uniquement pour le menu déroulant compte */
+header .account-dropdown .account-menu a,
+header .account-dropdown .account-menu a:link,
+header .account-dropdown .account-menu a:visited,
+header .account-dropdown .account-menu a:active {
+    color: #111 !important;
+}

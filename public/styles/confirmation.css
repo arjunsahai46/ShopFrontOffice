@@ -1,0 +1,163 @@
+/* Styles pour la page de confirmation de commande */
+.confirmation-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.confirmation-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.confirmation-header h1 {
+    color: #2ecc71;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.confirmation-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #2ecc71;
+    font-size: 1.2em;
+}
+
+.confirmation-message i {
+    font-size: 2em;
+}
+
+.confirmation-details {
+    margin: 30px 0;
+}
+
+.commande-info, .client-info, .produits-commandes {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.commande-info h2, .client-info h2, .produits-commandes h2 {
+    color: #2c3e50;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #2ecc71;
+    padding-bottom: 10px;
+}
+
+.commande-info p, .client-info p {
+    margin: 10px 0;
+    color: #34495e;
+}
+
+.recap-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.recap-table th {
+    background-color: #2ecc71;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+.recap-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.recap-table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.recap-table tfoot {
+    font-weight: bold;
+    background-color: #f8f9fa;
+}
+
+.recap-table tfoot td {
+    padding: 15px 12px;
+}
+
+.confirmation-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.btn-continuer, .btn-profil {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #2ecc71;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-profil {
+    background-color: #3498db;
+}
+
+.btn-continuer:hover, .btn-profil:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-continuer:hover {
+    background-color: #27ae60;
+}
+
+.btn-profil:hover {
+    background-color: #2980b9;
+}
+
+.error-message {
+    text-align: center;
+    margin: 30px auto;
+    padding: 15px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 4px;
+    max-width: 600px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .confirmation-container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .confirmation-header h1 {
+        font-size: 1.6em;
+    }
+
+    .confirmation-message {
+        font-size: 1em;
+    }
+
+    .recap-table {
+        font-size: 0.9em;
+    }
+
+    .confirmation-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-continuer, .btn-profil {
+        width: 100%;
+        text-align: center;
+    }
+} 

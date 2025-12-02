@@ -1,0 +1,39 @@
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+
+# Fichiers temporaires
+*.tmp
+*.temp
+*.cache
+
+# Fichiers de configuration sensibles (à adapter selon vos besoins)
+# configs/mysql_config.class.php
+
+# Vendor (dépendances)
+vendor/
+composer.lock
+
+# Fichiers générés
+public/factures/*
+!public/factures/.gitkeep
+
+# Fichiers de session
+sessions/
+
+# Fichiers de test
+*.test.php
+tests.php
+

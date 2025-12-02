@@ -1,0 +1,71 @@
+/* Styles pour les formulaires généraux (non-auth) */
+.general-form {
+    display: inline-block;
+    height: 37%;
+    overflow: auto;
+    width: 75%;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 1200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 100px;
+    vertical-align: top;
+}
+
+.titre {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+.general-form fieldset {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.general-form fieldset.sansBordure {
+    padding: 5px;
+    border: none;
+}
+
+.general-form legend {
+    color: #e67e22;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.general-form label {
+    display: block;
+    font-size: 1em;
+    font-weight: 600;
+    color: #34495e;
+    margin-bottom: 8px;
+}
+
+.general-form input,
+.general-form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.general-form input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #27ae60;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}

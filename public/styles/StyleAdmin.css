@@ -1,0 +1,151 @@
+/* Style des textes */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #1E1E1E; /* Noir légèrement atténué */
+}
+
+
+
+h1, h2, h3 {
+    color: blanchedalmond;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+p {
+    color: blanchedalmond;
+    line-height: 1.6;
+}
+/* Boutons */
+button, .btn {
+    background-color: #ff69b4; /* Bleu nuit */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: #ff85c5; /* Bleu plus clair pour effet interactif */
+    transform: scale(1.05); /* Animation au survol */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Tableaux */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #365CF5; /* Bleu nuit */
+    color: white;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e0f0ff; /* Bleu très clair */
+}
+
+/* Champs de saisie */
+input[type="text"], input[type="email"], input[type="password"], textarea, select {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, background-color 0.3s ease; /* Pas de transition sur la taille */
+}
+
+/* Au survol */
+input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover, textarea:hover, select:hover {
+    border-color: #365CF5; /* Bleu clair */
+    background-color: #ffffff;
+}
+
+/* Au focus */
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+    border-color: #365CF5; /* Bleu nuit */
+    background-color: #ffffff;
+}
+
+/* Champs désactivés */
+input[disabled], textarea[disabled] {
+    background-color: #eaeaea;
+    color: #999999;
+    cursor: not-allowed;
+}
+
+/* Textarea spécifique */
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+
+
+
+
+/* Conteneur pour aligner les champs */
+.form-group {
+    display: flex;
+    align-items: center; /* Aligne verticalement les éléments */
+    gap: 10px; /* Espacement horizontal entre les champs */
+    margin-bottom: 20px; /* Espace en bas du groupe */
+}
+
+/* Input pour idCategorie */
+#idCategorie {
+    width: 80px; /* Taille fixe pour l'ID */
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center; /* Centre le texte dans le champ */
+}
+
+/* Zone de texte pour modifier la catégorie */
+#nomCategorie {
+    flex: 1; /* Prend tout l'espace restant */
+    padding: 8px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Bouton "Modifier" */
+button.modify-btn {
+    background-color: #002B5B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button.modify-btn:hover {
+    background-color: #005080;
+    transform: scale(1.05);
+}

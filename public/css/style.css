@@ -1,0 +1,425 @@
+/* Styles pour les produits */
+.product-info {
+    flex: 1;
+}
+
+.category {
+    display: inline-block;
+    background-color: #f0f2f5;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    color: #1a237e;
+    margin: 10px 0;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-controls label {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Styles pour l'authentification */
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #f8f9fa;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.auth-container h1 {
+    font-size: 24px;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+}
+
+.auth-tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.auth-tab {
+    background: none;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #495057;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.auth-tab.active {
+    background-color: #e9ecef;
+    color: #212529;
+    font-weight: 500;
+}
+
+.auth-form {
+    display: block;
+}
+
+.auth-form.hidden {
+    display: none;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #495057;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #212529;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #0d6efd;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #0b5ed7;
+}
+
+.error-message,
+.success-message {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    border: 1px solid #f5c2c7;
+    color: #842029;
+}
+
+.success-message {
+    background-color: #d1e7dd;
+    border: 1px solid #badbcc;
+    color: #0f5132;
+}
+
+/* Style pour le formulaire flottant */
+.form-group.floating {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-group.floating input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: transparent;
+}
+
+.form-group.floating label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    padding: 0 4px;
+    color: #6c757d;
+    transition: all 0.3s;
+    pointer-events: none;
+    margin: 0;
+}
+
+.form-group.floating.focused label,
+.form-group.floating input:focus + label,
+.form-group.floating input:not(:placeholder-shown) + label {
+    top: 0;
+    transform: translateY(-50%) scale(0.85);
+    color: #0d6efd;
+}
+
+.form-group.floating input:focus {
+    border-color: #0d6efd;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+}
+
+/* Style pour les sélecteurs de date */
+.date-group {
+    margin-bottom: 20px;
+}
+
+.date-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #495057;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.date-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.date-inputs select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #212529;
+    background-color: white;
+    cursor: pointer;
+}
+
+.date-inputs select:focus {
+    border-color: #0d6efd;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .auth-container {
+        max-width: 100%;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .auth-page {
+        justify-content: center;
+    }
+
+    .date-inputs {
+        flex-direction: column;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-row .form-group {
+        margin-bottom: 20px;
+    }
+}
+
+/* Styles pour le panier */
+.panier-vide {
+    text-align: center;
+    padding: 40px;
+}
+
+.table-panier {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.table-panier th,
+.table-panier td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.table-panier th {
+    background-color: #f8f9fa;
+    font-weight: 500;
+}
+
+.panier-img {
+    max-width: 80px;
+    height: auto;
+}
+
+.input-quantite {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+}
+
+.btn-supprimer {
+    color: #dc3545;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.total-label {
+    text-align: right;
+    font-weight: bold;
+}
+
+.total-amount {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.panier-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.btn-vider-panier,
+.btn-commander {
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-vider-panier {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-commander {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-vider-panier:hover {
+    background-color: #c82333;
+}
+
+.btn-commander:hover {
+    background-color: #218838;
+}
+
+/* Styles pour le profil client */
+.profil-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.profil-box {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 30px;
+}
+
+.profil-box h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.profil-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.profil-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.btn-deconnexion {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #e74c3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-deconnexion:hover {
+    background-color: #c0392b;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .product-info {
+        text-align: center;
+    }
+
+    form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .quantity-controls {
+        margin-bottom: 15px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .table-panier {
+        font-size: 0.9em;
+    }
+
+    .panier-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn-vider-panier,
+    .btn-commander {
+        width: 100%;
+        text-align: center;
+    }
+
+    .profil-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn-deconnexion {
+        width: 100%;
+        text-align: center;
+    }
+} 

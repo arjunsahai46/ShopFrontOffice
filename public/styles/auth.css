@@ -1,0 +1,552 @@
+/* Styles pour les pages d'authentification */
+:root {
+    --primary-color: #1a73e8;
+    --secondary-color: #333;
+    --text-color: #fff;
+    --border-color: #444;
+    --background-color: #000000;
+    --container-bg: #1c1c1c;
+    --input-bg: transparent;
+    --error-color: #ee2200;
+    --success-color: #2ecc71;
+    --link-color: #8ab4f8;
+}
+
+.auth-page {
+    min-height: 100vh;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    font-family: SamsungOne, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.auth-container {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: var(--container-bg);
+    border-radius: 24px;
+    padding: 48px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.auth-header h1 {
+    font-size: 24px;
+    line-height: 1.334;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.auth-header h2 {
+    font-size: 24px;
+    line-height: 1.334;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.auth-header p {
+    font-size: 14px;
+    line-height: 1.429;
+    color: var(--text-color);
+    opacity: 0.7;
+    margin-top: 16px;
+}
+
+.auth-title {
+    font-size: 28px;
+    line-height: 1.334;
+    font-weight: 600;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    transform-origin: left;
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.form-control {
+    width: 100%;
+    height: 44px;
+    padding: 8px 0;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-color);
+    transition: all 0.2s ease;
+    border-radius: 0;
+}
+
+.form-control:focus {
+    outline: none;
+    border-bottom: 2px solid var(--primary-color);
+    margin-bottom: -1px;
+}
+
+.form-control:focus + label,
+.form-control.has-value + label {
+    transform: translateY(-130%) scale(0.85);
+    color: var(--primary-color);
+}
+
+.form-control.error {
+    border-bottom-color: var(--error-color);
+}
+
+.form-control.error + label {
+    color: var(--error-color);
+}
+
+.error-message {
+    display: none;
+    color: #ee2200;
+    font-size: 12px;
+    margin-top: 4px;
+    position: absolute;
+    left: 0;
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.password-toggle:hover {
+    color: var(--text-color);
+}
+
+.form-check {
+    margin: 16px 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.form-check-input {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    background-color: transparent;
+}
+
+.form-check-input:checked {
+    border-color: var(--primary-color);
+    background-color: transparent;
+}
+
+.form-check-input:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+}
+
+.form-check-label {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 21px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+    min-width: 140px;
+    flex: 1;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.btn-next {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.btn-social {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    border: none;
+}
+
+.btn-social:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.auth-links {
+    margin: 24px 0;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+}
+
+.link {
+    color: var(--link-color);
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.link:hover {
+    text-decoration: underline;
+    opacity: 1;
+}
+
+.social-login {
+    margin-top: 24px;
+}
+
+.success-message {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: var(--success-color);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* Style pour la disposition en grille des champs d'adresse */
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.form-row .form-group:first-child {
+    grid-column: 1;
+}
+
+.form-row .form-group:nth-child(2) {
+    grid-column: 2;
+}
+
+.form-row .form-group:last-child {
+    grid-column: 3;
+}
+
+/* Style pour les champs de date */
+.date-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    margin-bottom: 8px;
+    transition: opacity 0.2s ease;
+}
+
+.date-inputs .form-control:focus ~ .date-label,
+.date-inputs .form-control.has-value ~ .date-label,
+.form-control:focus ~ .date-label,
+.form-control.has-value ~ .date-label {
+    opacity: 0;
+}
+
+.date-inputs {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 20px;
+}
+
+.date-inputs .form-group {
+    position: relative;
+}
+
+.date-inputs .form-group:nth-child(1),
+.date-inputs .form-group:nth-child(2),
+.date-inputs .form-group:nth-child(3) {
+    width: 90px;
+}
+
+.date-inputs label {
+    display: block;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    transform-origin: left;
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.date-inputs .form-control {
+    width: 100%;
+    height: 26px;
+    padding: 0;
+    font-size: 15px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-color);
+    line-height: 26px;
+}
+
+.date-inputs .form-control:focus {
+    outline: none;
+    border-bottom: 2px solid var(--primary-color);
+    margin-bottom: -1px;
+}
+
+.date-inputs .form-control:focus + label,
+.date-inputs .form-control.has-value + label {
+    transform: translateY(-130%) scale(0.85);
+    color: var(--primary-color);
+}
+
+select.form-control {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 2px center;
+    padding-right: 16px;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+/* Style pour les options du select */
+select.form-control option {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 8px;
+}
+
+/* Style pour l'option vide */
+select.form-control option[value=""] {
+    display: none;
+}
+
+/* Assurer que le texte du select est aligné avec les autres champs */
+.date-inputs select.form-control {
+    color: #ffffff;
+}
+
+/* Cacher le texte de l'option par défaut quand non sélectionnée */
+.date-inputs select.form-control:invalid {
+    color: transparent;
+}
+
+/* Suppression des flèches pour les inputs number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.btn-back {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 32px 24px;
+        margin: 0 16px;
+        max-width: 100%;
+    }
+
+    .auth-header h1,
+    .auth-header h2 {
+        font-size: 20px;
+    }
+
+    .auth-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .date-inputs {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+/* Styles pour la page de profil */
+.profile-info {
+    margin-top: 32px;
+}
+
+.info-group {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-group h3 {
+    color: var(--text-color);
+    font-size: 18px;
+    margin: 0 0 20px 0;
+    font-weight: 500;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+}
+
+.info-value {
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-value input[type="password"] {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: right;
+    width: auto;
+    padding: 0;
+}
+
+.info-value input[type="password"]:focus {
+    outline: none;
+}
+
+.info-value .password-toggle {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.info-value .password-toggle:hover {
+    color: var(--text-color);
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    justify-content: flex-end;
+}
+
+.button-group .btn {
+    min-width: 120px;
+}
+
+/* Responsive design pour la page de profil */
+@media (max-width: 768px) {
+    .auth-container {
+        margin: 20px;
+        padding: 24px;
+    }
+
+    .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .info-value {
+        width: 100%;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button-group .btn {
+        width: 100%;
+    }
+} 

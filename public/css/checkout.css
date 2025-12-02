@@ -1,0 +1,2322 @@
+/* Base styles */
+body {
+    background-color: #fff;
+    color: #000;
+    font-family: 'SamsungOne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    line-height: 1.5;
+}
+
+.checkout-container {
+    display: flex;
+    gap: 40px;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.checkout-content {
+    flex: 0 1 auto;
+    width: 640px;
+    max-width: 640px;
+}
+
+/* Form layout */
+.form-checkout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #000;
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem;
+    color: #000;
+}
+
+/* Styles pour les titres numérotés */
+h2.numbered {
+    color: #707070;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0;
+    padding: 24px 24px 0;
+    opacity: 0.4;
+}
+
+h2.numbered.active {
+    color: #000;
+    opacity: 1;
+    font-weight: 700;
+}
+
+/* Ajout d'une classe pour tous les conteneurs des sections numérotées */
+.section-container {
+    background-color: #f5f5f5;
+    border-radius: 16px;
+    padding: 0 0 24px;
+    margin-bottom: 2rem;
+}
+
+.section-content {
+    padding: 0 24px;
+}
+
+/* Repositionnement du titre de paiement */
+h2.numbered.payment-title {
+    margin-bottom: 2rem;
+}
+
+/* Styles pour les sections d'information personnelle et livraison */
+.personal-info-summary, .delivery-info-summary {
+    background-color: #f5f5f5;
+    border-radius: 16px;
+    padding: 0 0 24px;
+    margin-bottom: 2rem;
+}
+
+.info-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 24px;
+    margin-top: 16px;
+}
+
+/* Form elements */
+.form-group {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    color: #666;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+/* Style commun pour tous les inputs sauf préfixe et téléphone */
+input[type="text"]:not(#telephone):not(.number-field input),
+input[type="email"],
+select:not(.prefix-select),
+.search-input input,
+.ville-input select,
+#code_postal,
+#ville,
+#adresse,
+#complement {
+    width: 100%;
+    height: 44px;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #000;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #d9d9d9;
+    padding: 0.5rem 0;
+    box-sizing: border-box;
+    position: relative;
+    margin-top: 0;
+}
+
+/* Style spécifique pour le champ téléphone */
+#telephone {
+    font-weight: 400;
+}
+
+/* Barre d'animation pour tous les champs sauf préfixe et téléphone */
+.form-group:not(.prefix-field):not(.number-field)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #0066cc;
+    transition: all 0.2s ease;
+    transform: translateX(-50%);
+}
+
+/* Animation au focus pour tous les champs sauf préfixe et téléphone */
+.form-group:not(.prefix-field):not(.number-field):focus-within::after {
+    width: 100%;
+}
+
+/* Focus states pour tous les champs sauf préfixe et téléphone */
+input[type="text"]:not(#telephone):not(.number-field input):focus,
+input[type="email"]:focus,
+select:not(.prefix-select):focus,
+.search-input input:focus,
+.ville-input select:focus,
+#code_postal:focus,
+#ville:focus,
+#adresse:focus,
+#complement:focus {
+    outline: none;
+    border-bottom-color: transparent;
+}
+
+/* Label color change on focus pour tous les champs */
+*:focus ~ label,
+.form-group:focus-within > label,
+.search-input:focus-within label,
+.prefix-field:focus-within label,
+.number-field:focus-within label,
+.telephone-group:focus-within label {
+    color: #0066cc;
+}
+
+/* Search icon color change on focus */
+.search-input:focus-within .search-icon svg path {
+    stroke: #0066cc;
+}
+
+/* Reset des styles spécifiques qui pourraient interférer */
+.prefix-select,
+.number-field input,
+#prefixe {
+    border-radius: 0;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Style spécifique pour les selects tout en gardant la cohérence */
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23666' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.25rem center;
+    padding-right: 1.5rem;
+    cursor: pointer;
+}
+
+/* Maintien des styles spécifiques pour les champs désactivés */
+select:disabled,
+input:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+/* Phone row styles - similaire à postal-row */
+.form-row.phone-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 2rem;
+    width: 100%;
+    margin-bottom: 1.25rem;
+}
+
+.phone-row .form-group {
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.prefix-input,
+.phone-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.prefix-input select,
+.phone-input input {
+    width: 100%;
+    height: 44px;
+    font-size: 1rem;
+    color: #000;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #d9d9d9;
+    padding: 0.5rem 0;
+    box-sizing: border-box;
+}
+
+.prefix-input select {
+    padding-right: 1.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23666' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.25rem center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.prefix-input::after,
+.phone-input::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #0066cc;
+    transition: all 0.2s ease;
+    transform: translateX(-50%);
+}
+
+.prefix-input:focus-within::after,
+.phone-input:focus-within::after {
+    width: 100%;
+}
+
+.prefix-input select:focus,
+.phone-input input:focus {
+    outline: none;
+    border-bottom-color: transparent;
+}
+
+/* Supprimer les anciens styles qui ne sont plus nécessaires */
+.telephone-group,
+.prefix-field,
+.number-field,
+.prefix-select {
+    display: none;
+}
+
+/* Search inputs */
+.search-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input input {
+    text-indent: 35px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #707070;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    pointer-events: none;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.search-icon svg path {
+    transition: stroke 0.3s ease;
+}
+
+/* Ville select specific styles */
+.ville-input select {
+    padding: 0.75rem;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.ville-input select:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+/* Name row */
+.name-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.name-row .form-group {
+    margin-bottom: 0;
+}
+
+/* Required field indicator */
+.prefix-field label::after,
+.number-field label::after {
+    content: " *";
+    color: #666;
+}
+
+/* Placeholder styling */
+input::placeholder {
+    color: #999;
+}
+
+/* Error states */
+.form-group input:invalid:not(:placeholder-shown),
+.form-group select:invalid:not(:placeholder-shown) {
+    border-color: #d9d9d9;
+}
+
+/* Success states */
+.form-group input:valid:not(:placeholder-shown),
+.form-group select:valid:not(:placeholder-shown) {
+    border-color: #d9d9d9;
+}
+
+/* Animation de chargement */
+.search-input.loading .search-icon {
+    display: none;
+}
+
+.search-input.loading::after {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-top-color: #0066cc;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+/* Address section */
+.address-section {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+}
+
+.address-section h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #000;
+}
+
+.info-text {
+    color: #707070;
+    font-size: 0.875rem;
+    margin: 0.25rem 0 1.25rem;
+}
+
+.postal-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+    width: 100%;
+    margin-bottom: 1.25rem;
+}
+
+.postal-row .form-group {
+    margin-bottom: 1rem;
+}
+
+/* Récapitulatif */
+.checkout-recap {
+    width: 380px;
+    min-width: 380px;
+    margin-left: auto;
+    position: sticky;
+    top: 24px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.checkout-recap h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #000;
+}
+
+.recap-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.recap-header span {
+    font-size: 14px;
+    color: #000;
+}
+
+.btn-modifier {
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-modifier::before {
+    content: "✎";
+    font-size: 14px;
+}
+
+/* Récapitulatif produits */
+.recap-produits {
+    margin: 1rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.recap-produit {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid #eee;
+}
+
+.produit-image {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.produit-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.produit-details {
+    flex: 1;
+}
+
+.produit-details h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+    color: #000;
+}
+
+.produit-couleur {
+    font-size: 0.75rem;
+    color: #707070;
+    margin: 0 0 0.5rem;
+}
+
+.produit-prix {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.prix-barre {
+    font-size: 0.875rem;
+    color: #707070;
+    text-decoration: line-through;
+}
+
+.prix-actuel {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #000;
+}
+
+.quantite {
+    font-size: 0.75rem;
+    color: #707070;
+    margin-left: auto;
+}
+
+/* Code promo */
+.code-promo {
+    margin: 24px 0;
+    padding: 24px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.code-promo-input {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.code-promo-input input {
+    flex: 1;
+    height: 44px;
+    padding: 0 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.btn-appliquer {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 0 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.voir-codes {
+    color: #000;
+    text-decoration: underline;
+    font-size: 14px;
+    display: inline-block;
+}
+
+/* Total */
+.recap-total {
+    padding-top: 24px;
+}
+
+.total-ttc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.total-ttc span:first-child {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+}
+
+.total-ttc .montant {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+}
+
+.tva {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 24px;
+    text-align: right;
+}
+
+/* Options de paiement */
+.paiement-options {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #eee;
+}
+
+.paiement-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #000;
+}
+
+.paiement-option:last-child {
+    margin-bottom: 0;
+}
+
+/* Buttons */
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    width: 100%;
+}
+
+/* Style pour tous les boutons "Continuer" dans l'application */
+.btn-continuer, 
+button[type="submit"]:not(.btn-appliquer),
+button:contains("Continuer") {
+    background: #6cb2eb !important; /* Remplacer le dégradé */
+    background-image: none !important; /* Désactiver tout background-image */
+    background-color: #6cb2eb !important; /* Bleu azur plus clair */
+    color: white !important;
+    border: none !important;
+    border-radius: 22px !important;
+    padding: 0 32px !important;
+    height: 44px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    min-width: 140px !important;
+    text-align: center !important;
+    transition: background-color 0.3s ease !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+button[type="submit"]:not(.btn-appliquer):hover,
+.btn-continuer:hover {
+    background: #5ca5e0 !important;
+    background-image: none !important;
+    background-color: #5ca5e0 !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15) !important;
+}
+
+/* Cibler spécifiquement le bouton problématique */
+button[type="submit"].btn-continuer,
+#home-delivery-info button[type="submit"],
+form button[type="submit"]:not(.btn-appliquer),
+button[type="submit"][class*="continuer"] {
+    background: #6cb2eb !important;
+    background-image: none !important;
+    background-color: #6cb2eb !important;
+    background: -webkit-linear-gradient(none) !important;
+    background: -moz-linear-gradient(none) !important;
+    background: -o-linear-gradient(none) !important;
+    background: linear-gradient(none) !important;
+    border-radius: 22px !important;
+}
+
+/* Style pour le bouton point relais */
+.btn-pickup-submit {
+    background-color: #6cb2eb !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 22px !important;
+    padding: 0 32px !important;
+    height: 44px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    min-width: 220px !important;
+    text-align: center !important;
+    margin-top: 20px !important;
+    transition: background-color 0.3s ease !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+.btn-pickup-submit:hover {
+    background-color: #5ca5e0 !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15) !important;
+}
+
+.btn-pickup-submit:disabled {
+    background-color: #ccc !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+}
+
+/* Style spécifique pour le bouton dans le fichier v_checkout_livraison.inc.php */
+#main-delivery-form + button,
+#main-delivery-form ~ button {
+    background-color: #6cb2eb !important; 
+    color: white !important;
+    border: none !important;
+    border-radius: 22px !important;
+    padding: 0 32px !important;
+    height: 44px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    min-width: 140px !important;
+    text-align: center !important;
+    transition: background-color 0.3s ease !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+#main-delivery-form + button:hover,
+#main-delivery-form ~ button:hover {
+    background-color: #5ca5e0 !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15) !important;
+}
+
+/* Steps navigation */
+.checkout-steps {
+    display: flex;
+    margin-bottom: 3rem;
+    position: relative;
+    padding: 0;
+    counter-reset: step;
+}
+
+.step {
+    flex: 1;
+    text-align: left;
+    font-size: 0.875rem;
+    color: #707070;
+    position: relative;
+    padding-top: 2rem;
+}
+
+.step::before {
+    counter-increment: step;
+    content: counter(step);
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border: 2px solid #707070;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -12px;
+    left: 0;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.step::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: 0;
+    height: 2px;
+    background: #707070;
+}
+
+.step:last-child::after {
+    display: none;
+}
+
+.step.active {
+    color: #000;
+}
+
+.step.active::before {
+    background: #0066cc;
+    border-color: #0066cc;
+    color: #fff;
+}
+
+.step.done::before {
+    background: #0066cc;
+    border-color: #0066cc;
+    color: #fff;
+    content: "✓";
+}
+
+/* Livraison */
+.options-livraison {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.option-livraison {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-livraison:hover {
+    border-color: #0066cc;
+}
+
+.option-livraison input[type="radio"] {
+    display: none;
+}
+
+.option-livraison input[type="radio"]:checked + .option-content {
+    color: #0066cc;
+}
+
+.option-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.option-icon {
+    font-size: 1.5rem;
+}
+
+/* Paiement */
+.options-paiement {
+    margin: 2rem 0;
+}
+
+.option-paiement {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-paiement:hover {
+    border-color: #0066cc;
+}
+
+.option-paiement input[type="radio"] {
+    display: none;
+}
+
+.option-paiement .option-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.logos-cb {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.logos-cb img {
+    height: 24px;
+}
+
+/* Boutons */
+.btn-retour {
+    color: #0066cc;
+    text-decoration: none;
+    padding: 1rem 2rem;
+}
+
+.btn-payer {
+    background: #000;
+}
+
+/* Payment Form */
+.payment-form {
+    margin-top: 2rem;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Animation de chargement */
+.loading::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-top-color: #0066cc;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+/* Billing section */
+.billing-section {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+.billing-section h2 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+}
+
+/* Checkbox styling */
+.checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.checkbox-container input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #666;
+    border-radius: 50%;
+    margin-top: 0.25rem;
+    cursor: pointer;
+    position: relative;
+    background-color: white;
+}
+
+.checkbox-container input[type="checkbox"]:checked {
+    background-color: #0066FF;
+    border-color: #0066FF;
+}
+
+.checkbox-container input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg) translateY(-2px);
+}
+
+/* Suppression des autres styles de checkbox qui pourraient interférer */
+.checkbox-container::before,
+.checkbox-container::after {
+    display: none;
+}
+
+.checkbox-container input[type="checkbox"]:checked ~ .checkbox-text {
+    color: inherit;
+}
+
+.checkbox-container input[type="checkbox"]:focus {
+    outline: none;
+}
+
+/* Style pour le champ email en lecture seule */
+input[type="email"][readonly] {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    color: #666;
+    -webkit-text-fill-color: #666;
+    opacity: 1;
+    pointer-events: none;
+    text-decoration: none;
+    user-select: none;
+}
+
+input[type="email"][readonly]:focus {
+    outline: none;
+    border-bottom-color: #d9d9d9;
+    color: #666;
+}
+
+/* Styles pour le marketing consent */
+.marketing-consent {
+    margin: 20px 0;
+}
+
+.marketing-consent-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.marketing-consent-checkbox {
+    margin-top: 4px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #666;
+    border-radius: 50%;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    background-color: white;
+    flex-shrink: 0;
+}
+
+.marketing-consent-checkbox:checked {
+    background-color: #0066FF;
+    border-color: #0066FF;
+}
+
+.marketing-consent-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg) translateY(-2px);
+}
+
+.marketing-consent-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #000 !important;
+    cursor: pointer;
+    user-select: none;
+}
+
+.marketing-consent-text:hover,
+.marketing-consent-text:active,
+.marketing-consent-text:focus,
+.marketing-consent-checkbox:checked ~ .marketing-consent-text {
+    color: #000 !important;
+}
+
+.link-policy {
+    color: #0066CC;
+    text-decoration: none;
+}
+
+.link-policy:hover {
+    text-decoration: underline;
+}
+
+/* Suppression de tous les effets de focus et de bordure */
+.marketing-consent *:focus {
+    outline: none;
+}
+
+.marketing-consent-checkbox:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.marketing-consent-checkbox:checked:focus {
+    border-color: #0066FF;
+}
+
+.marketing-consent:focus-within {
+    outline: none;
+}
+
+/* Styles pour la section paiement */
+.payment-section {
+    margin-top: 3rem;
+}
+
+.payment-methods {
+    margin: 2rem 0;
+}
+
+.payment-methods-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 1rem;
+}
+
+.payment-logos {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.payment-logos img {
+    height: 24px;
+    object-fit: contain;
+}
+
+.payment-notice {
+    font-size: 14px;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+/* Styles pour la section livraison */
+.personal-info-summary {
+    background-color: #f5f5f5;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 2rem;
+}
+
+.info-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.customer-info {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.delivery-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #000;
+}
+
+.delivery-options {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.delivery-option {
+    flex: 1;
+    position: relative;
+}
+
+.delivery-option input[type="radio"] {
+    display: none;
+}
+
+.delivery-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 50px;
+}
+
+.delivery-option input[type="radio"]:checked + .delivery-label {
+    border-color: #0066CC;
+    background-color: #f5f9ff;
+}
+
+.delivery-icon {
+    font-size: 24px;
+}
+
+.delivery-logo {
+    height: 24px;
+    object-fit: contain;
+}
+
+.package-info {
+    margin-bottom: 2rem;
+}
+
+.package-count {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem;
+}
+
+.product-delivery-info {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-top: 1px solid #eee;
+    width: 100%;
+}
+
+.product-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.product-details {
+    flex: 1;
+}
+
+.product-details h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 4px;
+}
+
+.product-color {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.price-info {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #666;
+    font-size: 14px;
+}
+
+.current-price {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.delivery-date {
+    font-size: 12px;
+    color: #666;
+}
+
+.delivery-info {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 24px 0;
+    width: 100%;
+}
+
+.chronopost-info,
+.pointrelais-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.chronopost-info p,
+.pointrelais-info p {
+    flex: 1;
+    font-size: 14px;
+}
+
+.delivery-price {
+    font-weight: 600;
+    color: #000;
+}
+
+.learn-more {
+    display: inline-block;
+    margin-top: 16px;
+    color: #0066CC;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.learn-more:hover {
+    text-decoration: underline;
+}
+
+/* Formulaire de livraison */
+.delivery-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Styles pour la recherche de points relais */
+.pickup-location {
+    margin: 24px 0;
+    padding: 24px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+
+.pickup-location h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.pickup-search {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    align-items: flex-end;
+}
+
+.postal-search, .city-search {
+    flex: 1;
+}
+
+.postal-search label, .city-search label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #666;
+}
+
+.postal-search input, .city-search input {
+    width: 100%;
+    height: 44px;
+    padding: 0 12px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.btn-search-pickup {
+    height: 44px;
+    width: 44px;
+    background-color: #0066CC;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.map-icon {
+    font-size: 20px;
+}
+
+.pickup-info {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+/* Styles pour les résultats de points relais */
+.pickup-results {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.pickup-results h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #000;
+}
+
+.pickup-points-list {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.pickup-point {
+    display: flex;
+    padding: 16px;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.pickup-point:last-child {
+    border-bottom: none;
+}
+
+.pickup-point-radio {
+    margin-right: 16px;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 4px;
+}
+
+.pickup-point-radio input[type="radio"] {
+    display: none;
+}
+
+.pickup-point-radio label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #666;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+}
+
+.pickup-point-radio input[type="radio"]:checked + label {
+    border-color: #0066CC;
+}
+
+.pickup-point-radio input[type="radio"]:checked + label::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #0066CC;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pickup-point-info {
+    flex: 1;
+}
+
+.pickup-point-info h5 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #000;
+}
+
+.pickup-point-info p {
+    font-size: 14px;
+    margin: 4px 0;
+    color: #666;
+}
+
+.pickup-point-info .distance,
+.pickup-point-info .hours {
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+/* Styles pour la recherche de points relais */
+.pickup-search {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    align-items: flex-end;
+}
+
+/* Styles pour la page de paiement */
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.payment-option {
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.payment-option.active {
+    border-color: #0066CC;
+}
+
+.payment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.payment-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.payment-title input[type="radio"] {
+    display: none;
+}
+
+.payment-title label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    margin: 0;
+    cursor: pointer;
+}
+
+.payment-title input[type="radio"] + label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #666;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.payment-title input[type="radio"]:checked + label::before {
+    border-color: #0066CC;
+    background-color: white;
+    box-shadow: inset 0 0 0 4px #0066CC;
+}
+
+.payment-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.payment-icons img {
+    height: 24px;
+    object-fit: contain;
+}
+
+.payment-content {
+    padding: 16px;
+    border-top: 1px solid #eee;
+    display: none;
+}
+
+.payment-option.active .payment-content {
+    display: block;
+}
+
+.delivery-info-summary {
+    margin-top: 24px;
+    margin-bottom: 32px;
+}
+
+.terms-consent {
+    margin: 24px 0;
+}
+
+.consent-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.consent-checkbox input[type="checkbox"] {
+    margin-top: 4px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #666;
+    border-radius: 50%;
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    box-sizing: border-box;
+    /* S'assurer que les dimensions sont respectées */
+    min-width: 18px;
+    min-height: 18px;
+    max-width: 18px;
+    max-height: 18px;
+}
+
+.consent-checkbox input[type="checkbox"]:checked {
+    background-color: #0066CC;
+    border-color: #0066CC;
+}
+
+/* S'assurer que la coche est bien centrée */
+.consent-checkbox input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%) rotate(45deg);
+}
+
+.consent-checkbox label {
+    font-size: 14px;
+    color: #666;
+}
+
+.terms-link {
+    color: #0066CC;
+    text-decoration: none;
+}
+
+.terms-link:hover {
+    text-decoration: underline;
+}
+
+.financement-info {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #eee;
+}
+
+.financement-info h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.financement-info p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+}
+
+.loyalty-info {
+    margin-top: 24px;
+    font-size: 14px;
+    color: #666;
+}
+
+.loyalty-info strong {
+    color: #0066CC;
+}
+
+/* Style pour la section de confirmation de paiement */
+.payment-confirmation {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.payment-confirmation .terms-consent {
+    margin-bottom: 24px;
+}
+
+.payment-confirmation .form-actions {
+    display: flex;
+    justify-content: center;
+}
+
+/* Styles pour les options de paiement avec flèche */
+.payment-options {
+    margin-top: 20px;
+}
+
+.payment-option {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.payment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #fff;
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.payment-title {
+    display: flex;
+    align-items: center;
+}
+
+/* Cacher complètement les boutons radio */
+.payment-title input[type="radio"] {
+    display: none;
+}
+
+/* Styles pour le texte du titre */
+.payment-title span {
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.payment-icons {
+    display: flex;
+    align-items: center;
+}
+
+.payment-icons img {
+    height: 24px;
+    margin-left: 10px;
+}
+
+/* Style pour la flèche */
+.payment-arrow {
+    width: 14px;
+    height: 14px;
+    margin-left: 15px;
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.payment-arrow::before,
+.payment-arrow::after {
+    content: '';
+    position: absolute;
+    background-color: #666;
+    width: 2px;
+    height: 9px;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+}
+
+.payment-arrow::before {
+    transform: rotate(45deg);
+    right: 5px;
+}
+
+.payment-arrow::after {
+    transform: rotate(-45deg);
+    right: 10px;
+}
+
+/* Rotation de la flèche quand l'option est active */
+.payment-option.active .payment-arrow::before {
+    transform: rotate(-45deg);
+}
+
+.payment-option.active .payment-arrow::after {
+    transform: rotate(45deg);
+}
+
+/* Contenu du formulaire - transition améliorée */
+.payment-content {
+    height: 0;
+    padding: 0 20px;
+    overflow: hidden;
+    transition: height 0.3s ease, padding 0.3s ease;
+    background-color: #f9f9f9;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.payment-option.active .payment-content {
+    height: auto;
+    padding: 20px;
+    visibility: visible;
+    opacity: 1;
+    transition: height 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
+}
+
+/* Styles pour les options de paiement spécifiques */
+.payment-option:hover {
+    border-color: #6cb2eb;
+}
+
+.payment-option.active {
+    border-color: #6cb2eb;
+    box-shadow: 0 2px 8px rgba(108, 178, 235, 0.15);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-row {
+    display: flex;
+    margin: 0 -10px;
+}
+
+.form-row .form-group {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.consent-checkbox {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.consent-checkbox input {
+    margin-top: 3px;
+    margin-right: 10px;
+}
+
+.consent-checkbox label {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.terms-link {
+    color: #0066CC;
+    text-decoration: none;
+}
+
+.floa-options {
+    margin-bottom: 20px;
+}
+
+.floa-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.floa-option input[type="radio"] {
+    display: none;
+}
+
+.floa-option label {
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+}
+
+.floa-option label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border: 1px solid #666;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.floa-option input[type="radio"]:checked + label::before {
+    border-color: #0066CC;
+    background-color: white;
+    box-shadow: inset 0 0 0 4px #0066CC;
+}
+
+/* Masquer les cercles personnalisés pour les boutons radio qui sont générés par les autres styles */
+.floa-option input[type="radio"] + label::after,
+.floa-option input[type="radio"]:checked + label::after {
+    display: none;
+}
+
+.redirect-notice {
+    font-size: 14px;
+    color: #666;
+    margin: 15px 0;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.consent-info {
+    font-size: 13px;
+    color: #666;
+    margin: 15px 0;
+    line-height: 1.4;
+}
+
+.options-consent {
+    margin-bottom: 20px;
+}
+
+.floa-credit-warning {
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border-left: 3px solid #0066CC;
+    margin-bottom: 20px;
+}
+
+.floa-credit-warning p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.paypal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.paypal-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 44px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.paypal-button-primary {
+    background-color: #FFC439;
+    color: #003087;
+    border: 1px solid #FFC439;
+}
+
+.paypal-button-primary:hover {
+    background-color: #f2ba36;
+}
+
+.paypal-button-secondary {
+    background-color: #fff;
+    color: #003087;
+    border: 1px solid #003087;
+}
+
+.paypal-button-secondary:hover {
+    background-color: #f5f5f5;
+}
+
+.paypal-logo {
+    height: 20px;
+    margin: 0 auto;
+}
+
+.paypal-4x {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.paypal-4x-logo {
+    height: 20px;
+}
+
+.paypal-button-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Petite icône PayPal pour le bouton 4X */
+.paypal-small-logo {
+    height: 16px;
+    margin-right: 8px;
+}
+
+/* Styles pour la page de confirmation */
+.confirmation {
+    padding: 30px;
+}
+
+.confirmation-message {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.confirmation-icon {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    color: white;
+    line-height: 80px;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.confirmation-message h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.confirmation-id, .confirmation-date {
+    margin: 5px 0;
+    color: #666;
+}
+
+.order-details, .delivery-info, .payment-info, .next-steps {
+    margin-bottom: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.order-details h3, .delivery-info h3, .payment-info h3, .next-steps h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.order-products {
+    margin-bottom: 20px;
+}
+
+.order-product {
+    display: flex;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.product-image {
+    width: 80px;
+    margin-right: 15px;
+}
+
+.product-image img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.product-details {
+    flex: 1;
+}
+
+.product-name {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.product-price-qty {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.product-total {
+    font-weight: 500;
+    color: #000;
+}
+
+.order-totals {
+    background-color: #f2f2f2;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.total-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.total-final {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.delivery-address, .delivery-point, .delivery-method, .payment-method {
+    margin-bottom: 20px;
+}
+
+.delivery-address h4, .delivery-point h4, .delivery-method h4, .payment-method h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.delivery-address p, .delivery-point p, .delivery-method p, .payment-method p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.next-steps p {
+    margin-bottom: 15px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 10px 20px;
+    border-radius: 22px;
+    text-decoration: none;
+    font-weight: 500;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #6cb2eb;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    opacity: 0.9;
+}
+
+/* Assurer une forme parfaitement ronde pour tous les checkboxes et boutons radio */
+.checkbox-container input[type="checkbox"],
+.marketing-consent-checkbox,
+.pickup-point-radio label {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    min-height: 18px;
+    max-width: 18px;
+    max-height: 18px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Styles pour les boutons radio personnalisés */
+.payment-title input[type="radio"] + label::before,
+.floa-option input[type="radio"] + label::before,
+.option-livraison input[type="radio"] + label::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    min-height: 18px;
+    max-width: 18px;
+    max-height: 18px;
+    border: 1px solid #666;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+
+/* Styles pour les boutons radio cochés */
+.payment-title input[type="radio"]:checked + label::before,
+.floa-option input[type="radio"]:checked + label::before,
+.option-livraison input[type="radio"]:checked + label::before {
+    border-color: #0066CC;
+    background-color: white;
+    box-shadow: inset 0 0 0 4px #0066CC;
+}
+
+/* Style pour le bouton désactivé */
+.btn-continuer:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Styles pour la page de confirmation de commande */
+.confirmation-bloc {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    padding: 32px 28px 24px 28px;
+    margin: 40px auto 30px auto;
+    max-width: 700px;
+}
+
+.confirmation-bloc h2 { 
+    font-size: 1.4em; 
+    margin-bottom: 10px; 
+}
+
+.confirmation-bloc h3 { 
+    margin-top: 24px; 
+}
+
+.confirmation-table {
+    width: 100%; 
+    border-collapse: collapse; 
+    margin: 18px 0;
+}
+
+.confirmation-table th, 
+.confirmation-table td {
+    border-bottom: 1px solid #eee; 
+    padding: 10px 8px; 
+    text-align: left;
+}
+
+.confirmation-table th { 
+    background: #f7f7f7; 
+}
+
+.confirmation-total {
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center;
+    font-size: 1.2em; 
+    font-weight: bold; 
+    margin-top: 18px;
+}
+
+.confirmation-total .montant { 
+    color: #0074d9; 
+    margin-left: 12px; 
+}
+
+.confirmation-livraison { 
+    margin-top: 18px; 
+    color: #444; 
+}
+
+.confirmation-actions { 
+    margin-top: 28px; 
+    display: flex; 
+    gap: 16px; 
+}
+
+.btn-primary, 
+.btn-secondary {
+    display: inline-block; 
+    padding: 10px 22px; 
+    border-radius: 5px; 
+    text-decoration: none; 
+    font-weight: bold;
+}
+
+.btn-primary { 
+    background: #0074d9; 
+    color: #fff; 
+}
+
+.btn-secondary { 
+    background: #eee; 
+    color: #222; 
+}
+
+.btn-primary:hover, 
+.btn-secondary:hover { 
+    background: #005fa3; 
+    color: #fff; 
+}
+
+/* Styles pour la page de livraison */
+.error-messages {
+    background-color: #ffebee;
+    border-left: 4px solid #f44336;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 14px;
+    margin: 4px 0;
+}
+
+#pickup-selection-error {
+    margin-top: 10px;
+}
+
+.home-delivery-action {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pickup-actions {
+    margin-top: 20px;
+    text-align: center;
+    padding: 15px;
+    border-top: 1px solid #eee;
+}
