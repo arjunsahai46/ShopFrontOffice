@@ -1,0 +1,30 @@
+services:
+  app:
+    build: .
+    container_name: shopfront_app
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: shopfront_db
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: prin_boutique
+      MYSQL_USER: cedric
+      MYSQL_PASSWORD: cedric
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./docker/sql:/docker-entrypoint-initdb.d
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+

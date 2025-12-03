@@ -3,10 +3,10 @@
 class ModelePDO {
 
 //Attributs utiles pour la connexion
-    protected static $serveur = MySqlConfig::HOSTNAME;
-    protected static $base = MySqlConfig::DATABASE;
-    protected static $utilisateur = MySqlConfig::USERNAME;
-    protected static $passe = MySqlConfig::PASSWORD;
+    protected static $serveur = Database::HOSTNAME;
+    protected static $base = Database::DATABASE;
+    protected static $utilisateur = Database::USERNAME;
+    protected static $passe = Database::PASSWORD;
 //Attributs utiles pour la manipulation PDO de la BD
     protected static $pdoCnxBase = null;
     protected static $pdoStResults = null;
@@ -137,7 +137,7 @@ class ModelePDO {
      */
     protected static function isAdminOK($login, $passe) {
         self::seConnecter();
-        self::$requete = "SELECT * FROM Utilisateur where login=:login and passe=:passe";
+        self::$requete = "SELECT * FROM utilisateur where login=:login and passe=:passe";
         self::$pdoStResults = self::$pdoCnxBase->prepare(self::$requete);
         self::$pdoStResults->bindValue('login', $login);
         self::$pdoStResults->bindValue('passe', $passe);

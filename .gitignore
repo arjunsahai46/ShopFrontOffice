@@ -11,8 +11,17 @@ desktop.ini
 *~
 
 # Logs
-logs/
+logs/*
+!logs/.gitkeep
 *.log
+
+# Environment
+.env
+.env.local
+
+# Tests
+coverage/
+.phpunit.result.cache
 
 # Fichiers temporaires
 *.tmp
@@ -27,8 +36,9 @@ vendor/
 composer.lock
 
 # Fichiers générés
-public/factures/*
-!public/factures/.gitkeep
+storage/
+!storage/.gitkeep
+!storage/factures/.gitkeep
 
 # Fichiers de session
 sessions/

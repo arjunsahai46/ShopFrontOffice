@@ -2,7 +2,7 @@
 class ControleurPanier {
     
     public function __construct() {
-        error_log("ControleurPanier::__construct() appelé");
+        error_log("ControleurGestionPanier::__construct() appelé");
         // Vérifier si l'utilisateur est connecté
         if (!isset($_SESSION['client_data'])) {
             error_log("Session client_data non trouvée - Redirection vers la connexion");
@@ -14,12 +14,12 @@ class ControleurPanier {
     }
 
     public function afficherAdresse() {
-        error_log("ControleurPanier::afficherAdresse() appelé (depuis une redirection ou accès direct)");
-        require_once 'application/vues/v_checkout_adresse.inc.php';
+        error_log("ControleurGestionPanier::afficherAdresse() appelé (depuis une redirection ou accès direct)");
+        require_once chemin(Chemins::VUES . 'front/checkout/adresse.php');
     }
 
     public function validerAdresse() {
-        error_log("ControleurPanier::validerAdresse() appelé");
+        error_log("ControleurGestionPanier::validerAdresse() appelé");
         error_log("POST data reçues : " . print_r($_POST, true));
         
         // Récupérer et valider les données du formulaire
@@ -48,7 +48,7 @@ class ControleurPanier {
             // Rediriger vers le formulaire avec un message d'erreur
             $_SESSION['erreurs'] = $erreurs;
             header('Location: index.php?controleur=Panier&action=afficherAdresse');
-            exit();
+            return;
         }
 
         // Sauvegarder les données dans la session
@@ -57,17 +57,17 @@ class ControleurPanier {
 
         // Rediriger vers la page de livraison
         header('Location: index.php?controleur=Panier&action=afficherLivraison');
-        exit();
+        return;
     }
 
     public function afficherLivraison() {
-        error_log("ControleurPanier::afficherLivraison() appelé");
+        error_log("ControleurGestionPanier::afficherLivraison() appelé");
         
         // Initialiser le panier s'il n'existe pas
         if (!isset($_SESSION['panier'])) {
-            require_once 'application/modeles/gestion_panier.class.php';
-            Panier::initialiser();
-            $produits = Panier::getProduits();
+            require_once chemin(Chemins::MODELES . 'GestionPanier.class.php');
+            GestionPanier::initialiser();
+            $produits = GestionPanier::getProduits();
             $_SESSION['panier'] = [];
             
             foreach ($produits as $id => $quantite) {
@@ -82,23 +82,23 @@ class ControleurPanier {
         // Vérifier si le panier est vide
         if (empty($_SESSION['panier'])) {
             header('Location: index.php?controleur=Produits&action=afficherPanier');
-            exit();
+            return;
         }
 
-        require_once 'application/vues/v_checkout_livraison.inc.php';
+        require_once chemin(Chemins::VUES . 'front/checkout/livraison.php');
     }
 
     public function validerLivraison() {
-        error_log("ControleurPanier::validerLivraison() appelé");
+        error_log("ControleurGestionPanier::validerLivraison() appelé");
         error_log("POST data reçues pour validerLivraison: " . print_r($_POST, true));
-        require_once 'application/modeles/gestion_boutique.class.php';
+        require_once chemin(Chemins::MODELES . 'GestionBoutique.class.php');
         $pdo = GestionBoutique::getPDO();
         $type_livraison = htmlspecialchars(trim($_POST['delivery_type'] ?? ''));
         if (empty($type_livraison)) {
             error_log('Erreur : type de livraison manquant');
             $_SESSION['erreurs'] = ["Le type de livraison est requis"];
             header('Location: index.php?controleur=Panier&action=afficherLivraison');
-            exit();
+            return;
         }
         $idLivraison = null;
         if ($type_livraison === 'home') {
@@ -149,7 +149,7 @@ class ControleurPanier {
             error_log('Erreur : champs point relais manquants');
             $_SESSION['erreurs'] = ["Veuillez sélectionner un point relais"];
             header('Location: index.php?controleur=Panier&action=afficherLivraison');
-            exit();
+            return;
         }
         $_SESSION['idLivraison'] = $idLivraison;
         $_SESSION['livraison'] = [
@@ -158,18 +158,18 @@ class ControleurPanier {
         ];
         error_log("Livraison enregistrée en session: " . print_r($_SESSION['livraison'], true));
         header('Location: index.php?controleur=Panier&action=afficherPaiement');
-        exit();
+        return;
     }
 
     // Méthode spécifique pour la livraison à domicile (solution temporaire)
     public function validerLivraisonDomicile() {
-        error_log("ControleurPanier::validerLivraisonDomicile() appelé");
+        error_log("ControleurGestionPanier::validerLivraisonDomicile() appelé");
         
         // Vérifier que l'adresse a été renseignée
         if (!isset($_SESSION['adresse_livraison'])) {
             error_log("Erreur: adresse de livraison non trouvée en session");
             header('Location: index.php?controleur=Panier&action=afficherAdresse');
-            exit();
+            return;
         }
         
         // Sauvegarder les informations de livraison dans la session
@@ -182,31 +182,31 @@ class ControleurPanier {
         
         // Rediriger vers la page de paiement avec un paramètre pour indiquer que c'est une redirection directe
         header('Location: index.php?controleur=Panier&action=afficherPaiement&direct=1');
-        exit();
+        return;
     }
 
     public function afficherPaiement() {
-        error_log("ControleurPanier::afficherPaiement() appelé avec GET: " . print_r($_GET, true));
+        error_log("ControleurGestionPanier::afficherPaiement() appelé avec GET: " . print_r($_GET, true));
         
         // Vérifier si les étapes précédentes ont été complétées
         if (!isset($_SESSION['adresse_livraison'])) {
             error_log("Adresse de livraison non trouvée en session - redirection vers adresse");
             header('Location: index.php?controleur=Panier&action=afficherAdresse');
-            exit();
+            return;
         }
         
         // Vérifier si les informations de livraison existent
         if (!isset($_SESSION['livraison'])) {
             error_log("Informations de livraison non trouvées en session - redirection vers livraison");
             header('Location: index.php?controleur=Panier&action=afficherLivraison');
-            exit();
+            return;
         }
         
         // Initialiser le panier s'il n'existe pas
         if (!isset($_SESSION['panier'])) {
-            require_once 'application/modeles/gestion_panier.class.php';
-            Panier::initialiser();
-            $produits = Panier::getProduits();
+            require_once chemin(Chemins::MODELES . 'GestionPanier.class.php');
+            GestionPanier::initialiser();
+            $produits = GestionPanier::getProduits();
             $_SESSION['panier'] = [];
             
             foreach ($produits as $id => $quantite) {
@@ -221,10 +221,10 @@ class ControleurPanier {
         // Vérifier si le panier est vide
         if (empty($_SESSION['panier'])) {
             header('Location: index.php?controleur=Produits&action=afficherPanier');
-            exit();
+            return;
         }
 
-        require_once 'application/vues/v_checkout_paiement.inc.php';
+        require_once chemin(Chemins::VUES . 'front/checkout/paiement.php');
     }
     
     public function validerPaiement() {
@@ -233,12 +233,12 @@ class ControleurPanier {
         if (empty($_POST['payment_method'])) {
             error_log('Redirection : payment_method manquant');
             header('Location: index.php?controleur=Panier&action=afficherAdresse');
-            exit();
+            return;
         }
         if (!isset($_POST['terms_consent'])) {
             error_log('Redirection : terms_consent non coché');
             header('Location: index.php?controleur=Panier&action=afficherAdresse');
-            exit();
+            return;
         }
         $paymentMethod = $_POST['payment_method'];
         $cardNumber = $_POST['card_number'] ?? '';
@@ -248,9 +248,9 @@ class ControleurPanier {
         if(empty($cardNumber) || empty($cardName) || empty($cardExpiry) || empty($cardCVV)) {
             error_log('Redirection : informations carte manquantes');
             header('Location: index.php?controleur=Panier&action=paiement&erreur=card_details');
-            exit();
+            return;
         }
-        require_once("application/modeles/ModelePDO.class.php");
+        require_once chemin(Chemins::MODELES . "ModelePDO.class.php");
         $pdo = ModelePDO::getPDO();
         try {
             $pdo->beginTransaction();
@@ -264,7 +264,7 @@ class ControleurPanier {
             if (empty($dateExpiration)) {
                 error_log('Redirection : date d\'expiration non valide');
                 header('Location: index.php?controleur=Panier&action=afficherPaiement&erreur=date');
-                exit();
+                return;
             }
             $stmt = $pdo->prepare("INSERT INTO paiement (numeroCarte, nomCarte, dateExpiration, codeConfidentiel) VALUES (?, ?, ?, ?)");
             $stmt->execute([$cardNumber, $cardName, $dateExpiration, $cardCVV]);
@@ -317,22 +317,22 @@ class ControleurPanier {
             unset($_SESSION['produits']);
             error_log('Redirection : confirmation de commande');
             header('Location: index.php?controleur=Panier&action=confirmation');
-            exit();
+            return;
         } catch (Exception $e) {
             error_log('Erreur SQL : ' . $e->getMessage());
             $pdo->rollBack();
             header('Location: index.php?controleur=Panier&action=paiement&erreur=sql');
-            exit();
+            return;
         }
     }
     
     public function confirmation() {
-        error_log("ControleurPanier::confirmation() appelé");
+        error_log("ControleurGestionPanier::confirmation() appelé");
         error_log("GET: " . print_r($_GET, true));
         error_log("POST: " . print_r($_POST, true));
         error_log("SESSION: " . print_r($_SESSION, true));
 
-        require_once 'application/modeles/gestion_boutique.class.php';
+        require_once chemin(Chemins::MODELES . 'GestionBoutique.class.php');
 
         // Récupérer l'ID de la commande depuis la session
         $idCommande = $_SESSION['commande']['id'] ?? null;
@@ -354,17 +354,17 @@ class ControleurPanier {
         // Récupérer l'adresse de livraison depuis la session
         $adresseLivraison = $_SESSION['adresse_livraison'] ?? null;
 
-        require_once 'application/vues/v_checkout_confirmation.inc.php';
+        require_once chemin(Chemins::VUES . 'front/checkout/confirmation.php');
     }
 
     public function processPayPalPayment() {
-        error_log("ControleurPanier::processPayPalPayment() appelé avec les données POST: " . print_r($_POST, true));
+        error_log("ControleurGestionPanier::processPayPalPayment() appelé avec les données POST: " . print_r($_POST, true));
         
         // Vérifier que la méthode de paiement et le montant sont définis
         if (!isset($_POST['payment_type']) || !isset($_POST['amount'])) {
             error_log("Paramètres manquants pour processPayPalPayment");
             header('Location: index.php?controleur=Panier&action=afficherPaiement&erreur=parametres');
-            exit();
+            return;
         }
         
         // Récupérer les données
@@ -375,7 +375,7 @@ class ControleurPanier {
         if ($amount <= 0) {
             error_log("Montant invalide pour processPayPalPayment: $amount");
             header('Location: index.php?controleur=Panier&action=afficherPaiement&erreur=montant');
-            exit();
+            return;
         }
         
         error_log("Création d'une commande PayPal avec les données: type=$paymentType, montant=$amount");
@@ -425,7 +425,7 @@ class ControleurPanier {
             'item_number' => $_SESSION['commande']['id'],
             'amount' => $amount,
             'currency_code' => 'EUR',
-            'return' => $base_url . '/checkout_test.php',  // Page de retour après paiement réussi
+            'return' => $base_url . '/panier/confirmation',  // Page de retour après paiement réussi
             'cancel_return' => $base_url . '/index.php?controleur=Panier&action=afficherPaiement',
             'notify_url' => $base_url . '/index.php?controleur=Panier&action=ipnHandler',
             'custom' => $paymentType . '|' . $_SESSION['commande']['id'],
@@ -449,13 +449,13 @@ class ControleurPanier {
         
         // Rediriger vers PayPal
         header("Location: " . $paypal_redirect);
-        exit();
+        return;
     }
     
     public function ipnHandler() {
         // Cette méthode traiterait normalement les notifications instantanées de paiement de PayPal
         // Pour simplifier, on ne l'implémente pas complètement
-        error_log("ControleurPanier::ipnHandler() appelé - IPN PayPal reçu");
+        error_log("ControleurGestionPanier::ipnHandler() appelé - IPN PayPal reçu");
         
         // En production, il faudrait vérifier l'authenticité de l'IPN avec PayPal
         // et mettre à jour le statut de la commande en conséquence
@@ -463,25 +463,5 @@ class ControleurPanier {
         // Pas de redirection ici car cette méthode est appelée par PayPal, pas par l'utilisateur
     }
 
-    public function testPayPal() {
-        // Cette méthode est uniquement pour tester le processus PayPal
-        echo "<h1>Test de redirection PayPal</h1>";
-        echo "<p>Cette page simule le processus de paiement PayPal sans aucune redirection externe.</p>";
-        
-        // Simuler la création d'une commande
-        $_SESSION['commande'] = [
-            'id' => 'CMD-TEST-' . substr(uniqid(), -8),
-            'date' => date('Y-m-d H:i:s'),
-            'montant' => 100,
-            'methode_paiement' => 'paypal',
-            'type_paiement' => 'standard',
-            'statut' => 'payé'
-        ];
-        
-        echo "<p>Commande créée dans la session avec l'ID: <strong>" . $_SESSION['commande']['id'] . "</strong></p>";
-        echo "<pre>SESSION: " . print_r($_SESSION, true) . "</pre>";
-        
-        echo "<p><a href='index.php?controleur=Panier&action=confirmation'>Aller à la page de confirmation</a></p>";
-    }
 }
 ?> 

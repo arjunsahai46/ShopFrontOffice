@@ -3,11 +3,11 @@
 class ControleurClient {
     
     public function afficherConnexion() {
-        require Chemins::VUES . 'v_connexion.inc.php';
+        require chemin(Chemins::VUES . 'front/connexion.php');
     }
 
     public function afficherInscription() {
-        require Chemins::VUES . 'v_register.inc.php';
+        require chemin(Chemins::VUES . 'front/register.php');
     }
 
     public function traiterInscription() {
@@ -42,20 +42,20 @@ class ControleurClient {
                     $client_existant = GestionClient::getClientParEmail($email);
                     if ($client_existant) {
                         header('Location: index.php?controleur=Client&action=afficherInscription&display=minimal&error=email_existe');
-                        exit();
+                        return;
                     }
 
                     // Ajouter le client dans la base de données
                     if (GestionClient::creerClient($nom, $prenom, $email, $mdp, $date_naissance)) {
                         header('Location: index.php?controleur=Client&action=afficherConnexion&display=minimal&inscription=success');
-                        exit();
+                        return;
                     } else {
                         throw new Exception("Erreur lors de la création du client");
                     }
                 } else {
                     error_log("Données manquantes - Nom: $nom, Prénom: $prenom, Email: $email, Jour: $jour, Mois: $mois, Année: $annee");
                     header('Location: index.php?controleur=Client&action=afficherInscription&display=minimal&error=champs');
-                    exit();
+                    return;
                 }
             } catch (Exception $e) {
                 // Afficher l'erreur directement pour le débogage
@@ -101,8 +101,8 @@ class ControleurClient {
                     $_SESSION['connecte'] = true;
 
                     // Charger le panier depuis la base pour ce client
-                    require_once Chemins::MODELES . 'gestion_panier.class.php';
-                    Panier::fusionnerPanierSessionEtBase($client->id);
+                    require_once chemin(Chemins::MODELES . 'GestionPanier.class.php');
+                    GestionPanier::fusionnerPanierSessionEtBase($client->id);
 
                     error_log("Données stockées en session : " . print_r($_SESSION, true));
 
@@ -121,16 +121,16 @@ class ControleurClient {
                     
                     // Rediriger vers la page d'accueil
                     header('Location: index.php');
-                    exit();
+                    return;
                 } else {
                     error_log("Échec de la connexion - Identifiants incorrects");
                     header('Location: index.php?controleur=Client&action=afficherConnexion&display=minimal&error=connexion');
-                    exit();
+                    return;
                 }
             } catch (Exception $e) {
                 error_log("Erreur lors de la connexion : " . $e->getMessage());
                 header('Location: index.php?controleur=Client&action=afficherConnexion&display=minimal&error=systeme');
-                exit();
+                return;
             }
         }
     }
@@ -156,7 +156,7 @@ class ControleurClient {
         if (!isset($_SESSION['client_id'])) {
             error_log("Client non connecté - Redirection vers la page de connexion");
             header('Location: index.php?controleur=Client&action=afficherConnexion&display=minimal');
-            exit();
+            return;
         }
 
         // Récupérer les informations du client
@@ -167,11 +167,11 @@ class ControleurClient {
             // Si le client n'existe pas, on le déconnecte
             session_destroy();
             header('Location: index.php?controleur=Client&action=afficherConnexion&display=minimal&error=client_inexistant');
-            exit();
+            return;
         }
 
         // Appel de la fonction stockée pour récupérer le nombre de commandes du client
-        require_once Chemins::MODELES . 'ModelePDO.class.php';
+        require_once chemin(Chemins::MODELES . 'ModelePDO.class.php');
         $pdo = ModelePDO::getPDO();
         $stmt = $pdo->prepare("SELECT _selectNbCommandesByClient(:idClient) AS nbCommandes");
         $stmt->bindValue(':idClient', $client->id, PDO::PARAM_INT);
@@ -183,13 +183,13 @@ class ControleurClient {
         error_log("Client trouvé, affichage du profil pour : " . $client->nom . " " . $client->prenom);
         
         // Inclure uniquement la vue du profil
-        require Chemins::VUES . 'v_profil_client.inc.php';
+        require chemin(Chemins::VUES . 'front/profil/index.php');
     }
 
     public function afficherModificationProfil() {
         if (!isset($_SESSION['client_id'])) {
             header('Location: index.php?controleur=Client&action=afficherConnexion&display=minimal');
-            exit();
+            return;
         }
 
         // Récupérer les informations du client
@@ -198,17 +198,17 @@ class ControleurClient {
         if (!$client) {
             session_destroy();
             header('Location: index.php?controleur=Client&action=afficherConnexion&display=minimal&error=client_inexistant');
-            exit();
+            return;
         }
 
         // Inclure la vue de modification
-        require Chemins::VUES . 'v_modifier_profil.inc.php';
+        require chemin(Chemins::VUES . 'front/profil/modifier.php');
     }
 
     public function modifierProfil() {
         if (!isset($_SESSION['client_id'])) {
             header('Location: index.php?controleur=Client&action=afficherConnexion&display=minimal');
-            exit();
+            return;
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -230,7 +230,7 @@ class ControleurClient {
                     if ($nouveau_mdp) {
                         if ($nouveau_mdp !== $confirmer_mdp) {
                             header('Location: index.php?controleur=Client&action=afficherModificationProfil&error=mdp_different');
-                            exit();
+                            return;
                         }
                         // Mettre à jour avec le nouveau mot de passe
                         GestionClient::modifierClient(
@@ -262,14 +262,14 @@ class ControleurClient {
                     
                     // Rediriger vers la page de profil avec un message de succès
                     header('Location: index.php?controleur=Client&action=afficherProfil&success=modification');
-                    exit();
+                    return;
                 } catch (Exception $e) {
                     header('Location: index.php?controleur=Client&action=afficherModificationProfil&error=modification');
-                    exit();
+                    return;
                 }
             } else {
                 header('Location: index.php?controleur=Client&action=afficherModificationProfil&error=champs_obligatoires');
-                exit();
+                return;
             }
         }
     }
@@ -277,10 +277,10 @@ class ControleurClient {
     public function afficherCommandes() {
         if (!isset($_SESSION['client_id'])) {
             header('Location: index.php?controleur=Client&action=afficherConnexion&display=minimal');
-            exit();
+            return;
         }
-        require_once Chemins::MODELES . 'gestion_boutique.class.php';
+        require_once chemin(Chemins::MODELES . 'GestionBoutique.class.php');
         $commandes = GestionBoutique::getCommandesByClientId($_SESSION['client_id']);
-        require Chemins::VUES . 'v_mes_commandes.inc.php';
+        require chemin(Chemins::VUES . 'front/commandes/index.php');
     }
 } 

@@ -1,7 +1,7 @@
 <?php
 
-require_once Chemins::MODELES.'gestion_categorie.class.php';
-require_once Chemins::MODELES.'gestion_boutique.class.php';
+require_once chemin(Chemins::MODELES.'GestionCategorie.class.php');
+require_once chemin(Chemins::MODELES.'GestionBoutique.class.php');
 
 class ControleurCategories {
 
@@ -11,8 +11,8 @@ class ControleurCategories {
     }
 
     public function afficher() {
-        VariablesGlobales::$lesCategories = GestionBoutique::getLesCategories();
-        require Chemins::VUES_PERMANENTES . 'v_menu_categories.inc.php';
+        App::$lesCategories = GestionBoutique::getLesCategories();
+        // Menu catégories intégré dans entete.php
     }
 
     public function ajouter() {
@@ -21,7 +21,7 @@ class ControleurCategories {
             gestionCategorie::ajouterCategorie($libelle);
 
             header("Location:index.php?controleur=Admin&action=VoirCategorie&display=minimal");
-            exit();
+            return;
         }
 
         $this->afficher();
@@ -33,7 +33,7 @@ class ControleurCategories {
             gestionCategorie::supprimerCategorie($libelle);
 
             header("Location:index.php?controleur=Admin&action=VoirCategorie&display=minimal");
-            exit();
+            return;
         }
         $this->afficher();
     }
@@ -45,7 +45,7 @@ class ControleurCategories {
             gestionCategorie::modifierCategorie($id, $libelle);
 
             header("Location:index.php?controleur=Admin&action=VoirCategorie&display=minimal");
-            exit();
+            return;
         }
         $this->afficher();
     }

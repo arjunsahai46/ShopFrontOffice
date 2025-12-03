@@ -22,9 +22,9 @@ class ControleurAdmin {
 
     public function afficherIndex() {
         if (isset($_SESSION['login_admin']))
-            require Chemins::VUES_ADMIN . 'v_index_admin.inc.php';
+            require chemin(Chemins::VUES_ADMIN . 'index_admin.php');
         else
-            require Chemins::VUES_ADMIN . 'v_connexion_admin.inc.php';
+            require chemin(Chemins::VUES_ADMIN . 'connexion_admin.php');
     }
 
     public function verifierConnexion() {
@@ -37,7 +37,7 @@ class ControleurAdmin {
             }
             header("Location:index.php?controleur=Admin&action=afficherIndex&display=minimal");
         } else
-            require Chemins::VUES_ADMIN . 'v_acces_interdit.inc.php';
+            require chemin(Chemins::VUES_ADMIN . 'acces_interdit.php');
     }
 
     public function seDeconnecter() {
@@ -52,14 +52,14 @@ class ControleurAdmin {
     }
 
     public function VoirCategorie() {
-        require Chemins::VUES_ADMIN . 'v_adminCategorie.inc.php';
+        require chemin(Chemins::VUES_ADMIN . 'adminCategorie.php');
     }
 
     public function voirStatsProduits() {
         $produitsJamaisCommandes = GestionBoutique::getProduitsJamaisCommandes();
         $topProduitsQte = GestionBoutique::getTopProduitsCommandes(5, false);
         $topProduitsCA = GestionBoutique::getTopProduitsCommandes(5, true);
-        require Chemins::VUES_ADMIN . 'v_stats_produits.inc.php';
+        require chemin(Chemins::VUES_ADMIN . 'stats_produits.php');
     }
 
     public function reapprovisionnerProduit() {
@@ -70,6 +70,6 @@ class ControleurAdmin {
             $_SESSION['msg_reappro'] = 'Produit réapprovisionné avec succès !';
         }
         header('Location: index.php?controleur=Admin&action=voirStatsProduits');
-        exit();
+        return;
     }
 }

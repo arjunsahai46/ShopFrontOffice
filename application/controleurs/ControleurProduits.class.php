@@ -1,6 +1,6 @@
 <?php
-require_once Chemins::MODELES . 'gestion_panier.class.php';
-require_once Chemins::MODELES . 'gestion_client.class.php';
+require_once chemin(Chemins::MODELES . 'GestionPanier.class.php');
+require_once chemin(Chemins::MODELES . 'GestionClient.class.php');
 
 class ControleurProduits {
 
@@ -10,38 +10,38 @@ class ControleurProduits {
 
     public function afficher() {
         $categorie = isset($_REQUEST['categorie']) ? $_REQUEST['categorie'] : 'all';
-        VariablesGlobales::$libelleCategorie = $categorie;
-        VariablesGlobales::$lesProduits = ($categorie === 'all') ? 
+        App::$libelleCategorie = $categorie;
+        App::$lesProduits = ($categorie === 'all') ? 
             GestionBoutique::getLesProduits() : 
             GestionBoutique::getLesProduitsByCategorie($categorie);
-        require Chemins::VUES . 'v_produits.inc.php';
+        require chemin(Chemins::VUES . 'front/produits/liste.php');
     }
 
     public function MettreAJourPanier() {
         if (isset($_POST['quantites']) && is_array($_POST['quantites'])) {
             foreach ($_POST['quantites'] as $idProduit => $quantite) {
                 if ($quantite > 0) {
-                    Panier::modifierQteProduit($idProduit, (int)$quantite);
+                    GestionPanier::modifierQteProduit($idProduit, (int)$quantite);
                 } else {
-                    Panier::retirerProduit($idProduit);
+                    GestionPanier::retirerProduit($idProduit);
                 }
             }
         }
         header("Location: index.php?controleur=Produits&action=afficherPanier");
-        exit();
+        return;
     }
 
     public function afficherPanier(): void {
-        Panier::initialiser();
-        $produitsPanier = Panier::getProduits();
+        GestionPanier::initialiser();
+        $produitsPanier = GestionPanier::getProduits();
 
-        if (Panier::isVide()) {
+        if (GestionPanier::isVide()) {
             $message = "Votre panier ne contient aucun produit.";
         } else {
             $message = null;
         }
         // Inclure la vue du panier
-        require Chemins::VUES . 'v_panier.inc.php';
+        require chemin(Chemins::VUES . 'front/panier.php');
     }
 
     public static function AjouterPanier(): void {
@@ -50,13 +50,13 @@ class ControleurProduits {
             $idProduit = $_REQUEST['produitID'];
             $qte = $_REQUEST['quantite'];
 
-            Panier::initialiser();
-            Panier::ajouterProduit($idProduit, $qte);
+            GestionPanier::initialiser();
+            GestionPanier::ajouterProduit($idProduit, $qte);
 
             header('Location: index.php?controleur=Produits&action=afficherPanier');
-            exit();
         } else {
-            echo "Erreur de paramètre dans l'ajout du panier !";
+            // Erreur de paramètre - rediriger vers le panier
+            header('Location: index.php?controleur=Produits&action=afficherPanier&error=parametre');
         }
     }
 
@@ -64,14 +64,16 @@ class ControleurProduits {
         if (isset($_REQUEST['idProduit'])) {
             $idProduit = $_REQUEST['idProduit'];
 
-            if (Panier::contains($idProduit)) {
-                Panier::retirerProduit($idProduit);
+            if (GestionPanier::contains($idProduit)) {
+                GestionPanier::retirerProduit($idProduit);
                 header('Location: index.php?controleur=Produits&action=afficherPanier');
             } else {
-                echo "Le produit avec l'identifiant $idProduit n'est pas dans le panier.";
+                // Produit non trouvé - rediriger vers le panier
+                header('Location: index.php?controleur=Produits&action=afficherPanier&error=produit_inexistant');
             }
         } else {
-            echo "Erreur : Aucun identifiant de produit fourni pour le retrait.";
+            // Aucun identifiant fourni - rediriger vers le panier
+            header('Location: index.php?controleur=Produits&action=afficherPanier&error=parametre_manquant');
         }
     }
 
@@ -80,7 +82,7 @@ class ControleurProduits {
             $_SESSION['produits'] = array(); // Réinitialisation du panier
         }
         header('Location: index.php?controleur=Produits&action=afficherPanier'); // Correction de l'URL
-        exit();
+        return;
     }
 
     public function afficherCheckoutAdresse(): void {
@@ -96,20 +98,20 @@ class ControleurProduits {
         if (!isset($_SESSION['client_id'])) {
             error_log("Utilisateur non connecté - redirection vers la page de connexion");
             header('Location: index.php?controleur=Client&action=afficherConnexion&error=connexion_requise');
-            exit();
+            return;
         }
 
-        if (Panier::isVide()) {
+        if (GestionPanier::isVide()) {
             error_log("Panier vide - redirection vers la page du panier");
             header('Location: index.php?controleur=Produits&action=afficherPanier');
-            exit();
+            return;
         }
 
         error_log("Tentative de récupération du client avec l'ID: " . $_SESSION['client_id']);
         
         try {
             // Récupérer les informations du client directement depuis GestionClient
-            require_once Chemins::MODELES . 'gestion_client.class.php';
+            require_once chemin(Chemins::MODELES . 'GestionClient.class.php');
             $client = GestionClient::getClientById($_SESSION['client_id']);
             
             if ($client) {
@@ -135,7 +137,7 @@ class ControleurProduits {
                 error_log("Client non trouvé dans la base de données avec l'ID: " . $_SESSION['client_id']);
                 session_destroy();
                 header('Location: index.php?controleur=Client&action=afficherConnexion&error=client_inexistant');
-                exit();
+                return;
             }
         } catch (Exception $e) {
             error_log("Erreur lors de la récupération du client: " . $e->getMessage());
@@ -143,23 +145,23 @@ class ControleurProduits {
         }
         
         // Afficher la vue de l'adresse
-        require Chemins::VUES . 'v_checkout_adresse.inc.php';
+        require chemin(Chemins::VUES . 'front/checkout/adresse.php');
     }
 
     public function commander(): void {
         // Vérifier si l'utilisateur est connecté
         if (!isset($_SESSION['client_id'])) {
             header('Location: index.php?controleur=Client&action=afficherConnexion&error=connexion_requise');
-            exit();
+            return;
         }
 
-        if (Panier::isVide()) {
+        if (GestionPanier::isVide()) {
             header('Location: index.php?controleur=Produits&action=afficherPanier');
-            exit();
+            return;
         }
 
         // Récupérer les produits du panier
-        $produitsPanier = Panier::getProduits();
+        $produitsPanier = GestionPanier::getProduits();
         $totalCommande = 0;
         $date = date('Y-m-d H:i:s');
         $idClient = $_SESSION['client_id'];
@@ -181,15 +183,15 @@ class ControleurProduits {
         GestionBoutique::modifierCommande($idCommande, $date, $idClient, $totalCommande);
 
         // Vider le panier
-        Panier::vider();
+        GestionPanier::vider();
 
         // Rediriger vers une page de confirmation
         header('Location: index.php?controleur=Produits&action=confirmationCommande');
-        exit();
+        return;
     }
 
     public function confirmationCommande(): void {
-        require Chemins::VUES . 'v_confirmation_commande.inc.php';
+        require chemin(Chemins::VUES . 'front/confirmation_commande.php');
     }
 }
 ?>
