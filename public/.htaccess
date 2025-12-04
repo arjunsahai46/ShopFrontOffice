@@ -1,11 +1,13 @@
 Options -Indexes
 RewriteEngine On
 
-# Exclure les fichiers statiques (CSS, JS, images, fonts, etc.) du rewriting
+# Désactiver le rewriting pour les fichiers statiques (CSS, JS, images, fonts, etc.)
+# Cette règle doit être AVANT la règle générale pour être prioritaire
+RewriteCond %{REQUEST_URI} \.(css|js|jpg|jpeg|png|gif|svg|ico|woff|woff2|ttf|eot|map|pdf|zip|txt)$ [NC]
+RewriteRule ^(.*)$ - [L]
+
+# Redirige tout le reste vers index.php avec le paramètre url
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-# Ne pas réécrire les fichiers statiques
-RewriteCond %{REQUEST_URI} !\.(css|js|jpg|jpeg|png|gif|svg|ico|woff|woff2|ttf|eot|map)$ [NC]
-# Redirige tout vers index.php avec le paramètre url
 RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
 
