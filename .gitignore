@@ -31,9 +31,12 @@ coverage/
 # Fichiers de configuration sensibles (à adapter selon vos besoins)
 # configs/mysql_config.class.php
 
-# Vendor (dépendances)
-vendor/
+# Vendor (dépendances Composer uniquement - à la racine)
+/vendor/
 composer.lock
+# Ne pas ignorer public/css/vendor/ et public/js/vendor/ (assets statiques)
+!public/css/vendor/
+!public/js/vendor/
 
 # Fichiers générés
 storage/
