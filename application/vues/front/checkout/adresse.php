@@ -221,11 +221,11 @@ foreach ($produits_panier as $id => $quantite) {
             <div class="payment-methods">
                 <h3 class="payment-methods-title">Modes de paiement Produits Samsung:</h3>
                 <div class="payment-logos">
-                    <img src="<?php echo Chemins::IMAGES; ?>payment/visa.png" alt="Visa">
-                    <img src="<?php echo Chemins::IMAGES; ?>payment/mastercard.png" alt="Mastercard">
-                    <img src="<?php echo Chemins::IMAGES; ?>payment/amex.png" alt="American Express">
-                    <img src="<?php echo Chemins::IMAGES; ?>payment/paypal.png" alt="PayPal">
-                    <img src="<?php echo Chemins::IMAGES; ?>payment/evollis.png" alt="Evollis">
+                    <img src="<?php echo asset_path('images/payment/visa.png'); ?>" alt="Visa">
+                    <img src="<?php echo asset_path('images/payment/mastercard.png'); ?>" alt="Mastercard">
+                    <img src="<?php echo asset_path('images/payment/amex.png'); ?>" alt="American Express">
+                    <img src="<?php echo asset_path('images/payment/paypal.png'); ?>" alt="PayPal">
+                    <img src="<?php echo asset_path('images/payment/evollis.png'); ?>" alt="Evollis">
                 </div>
                 <p class="payment-notice">Uniquement paiement par carte bancaire pour les produits non-vendus par Samsung</p>
             </div>
