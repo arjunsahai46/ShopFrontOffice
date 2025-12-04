@@ -11,12 +11,20 @@ class GestionClient extends ModelePDO {
     /**
      * Se connecter à la base de données
      * Utilise la connexion centralisée ModelePDO avec configuration Aiven
+     * ⚠️ NE JAMAIS créer de connexion directe - TOUJOURS utiliser ModelePDO
      */
     public static function seConnecter() {
         // Utiliser la méthode parente qui gère la connexion Aiven
         parent::seConnecter();
-        // Récupérer la connexion PDO partagée
+        // Récupérer la connexion PDO partagée depuis ModelePDO
         self::$pdoCnxBase = parent::getPDO();
+        
+        // Vérifier que la connexion a réussi
+        if (self::$pdoCnxBase === null) {
+            error_log('ERREUR CRITIQUE: Connexion PDO échouée dans GestionClient::seConnecter()');
+            error_log('Vérifiez que DB_PASSWORD est défini dans les variables d\'environnement Render');
+            throw new Exception('Impossible de se connecter à la base de données Aiven');
+        }
     }
 
     /**
@@ -32,9 +40,17 @@ class GestionClient extends ModelePDO {
     public static function creerClient($nom, $prenom, $email, $mot_de_passe, $date_naissance) {
         try {
             error_log("Début de la création du client dans la base de données", 0);
+            
+            // ⚠️ CRITIQUE : Utiliser UNIQUEMENT ModelePDO::seConnecter() pour la connexion Aiven
             self::seConnecter();
             
-            error_log("Connexion à la base de données établie", 0);
+            // Vérifier que la connexion est bien établie
+            if (self::$pdoCnxBase === null) {
+                error_log("ERREUR: Connexion PDO null après seConnecter()");
+                throw new PDOException("Connexion à la base de données Aiven échouée");
+            }
+            
+            error_log("Connexion à la base de données Aiven établie", 0);
             self::$requete = "INSERT INTO client (nom, prenom, email, mdp, date_naissance) 
                              VALUES (:nom, :prenom, :email, :mdp, :date_naissance)";
             
@@ -95,7 +111,15 @@ class GestionClient extends ModelePDO {
      * @return object Le client correspondant à l'email
      */
     public static function getClientParEmail($email) {
+        // ⚠️ CRITIQUE : Utiliser UNIQUEMENT ModelePDO::seConnecter() pour la connexion Aiven
         self::seConnecter();
+        
+        // Vérifier que la connexion est bien établie
+        if (self::$pdoCnxBase === null) {
+            error_log("ERREUR: Connexion PDO null dans getClientParEmail()");
+            return null;
+        }
+        
         self::$requete = "SELECT * FROM client WHERE email = :email";
         self::$pdoStResults = self::$pdoCnxBase->prepare(self::$requete);
         self::$pdoStResults->bindValue(':email', $email, PDO::PARAM_STR);

@@ -105,14 +105,19 @@ class Database {
      * Valeur à définir : voir RENDER_DB_CONFIG.md
      */
     public static function getPassword() {
+        // Priorité : DB_PASSWORD (env) > AIVEN_PASSWORD (env) > PASSWORD_DEFAULT (vide)
         $password = self::getEnv('DB_PASSWORD', 
             self::getEnv('AIVEN_PASSWORD', self::PASSWORD_DEFAULT));
         
-        // Si le mot de passe est vide, logger une erreur critique
+        // Si le mot de passe est vide, logger une erreur critique avec détails
         if (empty($password)) {
             error_log('ERREUR CRITIQUE: DB_PASSWORD non défini dans les variables d\'environnement');
+            error_log('getenv("DB_PASSWORD"): ' . (getenv('DB_PASSWORD') !== false ? 'DÉFINI' : 'NON DÉFINI'));
+            error_log('$_ENV["DB_PASSWORD"]: ' . (isset($_ENV['DB_PASSWORD']) ? 'DÉFINI' : 'NON DÉFINI'));
             error_log('Sur Render: Dashboard > Environment > Ajouter DB_PASSWORD');
             error_log('Valeur requise: voir RENDER_DB_CONFIG.md');
+        } else {
+            error_log('DB_PASSWORD récupéré avec succès depuis les variables d\'environnement');
         }
         
         return $password;

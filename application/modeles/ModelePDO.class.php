@@ -118,6 +118,13 @@ class ModelePDO {
 
     protected static function getLesTuples($table) {
         self::seConnecter();
+        
+        // Vérifier que la connexion est bien établie
+        if (self::$pdoCnxBase === null) {
+            error_log('ERREUR: Connexion PDO null dans getLesTuples()');
+            return [];
+        }
+        
         self::$requete = "SELECT * FROM " . $table;
         self::$pdoStResults = self::$pdoCnxBase->prepare(self::$requete);
         self::$pdoStResults->execute();
@@ -128,6 +135,13 @@ class ModelePDO {
 
     protected static function getPremierTupleByChamp($table, $nomChamp, $valeurChamp) {
         self::seConnecter();
+        
+        // Vérifier que la connexion est bien établie
+        if (self::$pdoCnxBase === null) {
+            error_log('ERREUR: Connexion PDO null dans getPremierTupleByChamp()');
+            return null;
+        }
+        
         self::$requete = "SELECT * FROM " . $table . " WHERE " . $nomChamp . " = :valeurChamp";
         self::$pdoStResults = self::$pdoCnxBase->prepare(self::$requete);
         self::$pdoStResults->bindValue(':valeurChamp', $valeurChamp);
