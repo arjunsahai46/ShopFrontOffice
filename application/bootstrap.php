@@ -22,6 +22,16 @@ $script_dir = dirname($script_name);
 $base_asset_path = rtrim($script_dir, '/') ?: '';
 define('BASE_ASSET_PATH', $base_asset_path);
 
+/**
+ * Fonction helper pour obtenir les chemins CSS/JS/Images
+ * Utilisation : asset_path('css/style.css') ou asset_path('images/logo.jpg')
+ */
+if (!function_exists('asset_path')) {
+    function asset_path($path) {
+        return BASE_ASSET_PATH . '/' . ltrim($path, '/');
+    }
+}
+
 // Autoload Composer (PSR-4)
 // Charger Composer autoload si disponible (pour les dépendances comme TCPDF)
 if (file_exists(ROOT_PATH . 'vendor/autoload.php')) {
