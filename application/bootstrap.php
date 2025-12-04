@@ -2,6 +2,10 @@
 // Démarrer le buffer de sortie AVANT session_start pour éviter les erreurs de headers
 ob_start();
 
+// Forcer l'encodage UTF-8 pour tout le script
+mb_internal_encoding('UTF-8');
+mb_http_output('UTF-8');
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -11,8 +15,18 @@ session_start(); // Pour éviter erreurs SESSIONS
 // Définir le chemin racine du projet
 define('ROOT_PATH', dirname(__DIR__) . '/');
 
+// Calculer le chemin de base pour les assets (CSS, JS, images)
+// Fonctionne avec localhost/prin_boutique/public/ ou localhost:8000
+$script_name = $_SERVER['SCRIPT_NAME'] ?? '/index.php';
+$script_dir = dirname($script_name);
+$base_asset_path = rtrim($script_dir, '/') ?: '';
+define('BASE_ASSET_PATH', $base_asset_path);
+
 // Autoload Composer (PSR-4)
-require_once ROOT_PATH . 'vendor/autoload.php';
+// Charger Composer autoload si disponible (pour les dépendances comme TCPDF)
+if (file_exists(ROOT_PATH . 'vendor/autoload.php')) {
+    require_once ROOT_PATH . 'vendor/autoload.php';
+}
 
 require_once ROOT_PATH . 'config/paths.php';
 require_once chemin(Paths::CONFIG . 'database.php');
