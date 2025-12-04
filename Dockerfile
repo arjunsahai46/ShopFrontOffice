@@ -13,8 +13,13 @@ RUN a2enmod rewrite headers
 COPY . /var/www/html
 
 # Vérification que les fichiers statiques sont bien copiés (pour debug)
-RUN ls -la /var/www/html/public/css/vendor/ || echo "CSS vendor directory not found"
-RUN ls -la /var/www/html/public/js/vendor/ || echo "JS vendor directory not found"
+RUN echo "=== Vérification CSS ===" && \
+    ls -la /var/www/html/public/css/vendor/ 2>&1 || echo "CSS vendor directory not found" && \
+    echo "=== Vérification JS ===" && \
+    ls -la /var/www/html/public/js/vendor/ 2>&1 || echo "JS vendor directory not found" && \
+    echo "=== Vérification fichiers spécifiques ===" && \
+    test -f /var/www/html/public/css/vendor/bootstrap.min.css && echo "bootstrap.min.css OK" || echo "bootstrap.min.css MISSING" && \
+    test -f /var/www/html/public/js/vendor/bootstrap.bundle.min.js && echo "bootstrap.bundle.min.js OK" || echo "bootstrap.bundle.min.js MISSING"
 
 # Installation des dépendances Composer (si composer.json existe)
 WORKDIR /var/www/html
