@@ -65,8 +65,20 @@ class ModelePDO {
                 self::$pdoCnxBase->exec("SET character_set_results = 'utf8mb4'");
                 self::$pdoCnxBase->exec("SET character_set_client = 'utf8mb4'");
             } catch (Exception $e) {
-                echo 'Erreur : ' . $e->getMessage() . '<br />'; // méthode de la classe Exception
-                echo 'Code : ' . $e->getCode(); // méthode de la classe Exception
+                // Logger l'erreur pour le débogage
+                error_log('Erreur de connexion PDO: ' . $e->getMessage());
+                error_log('DSN: ' . $dsn);
+                error_log('User: ' . self::$utilisateur);
+                error_log('Host: ' . self::$serveur . ':' . self::$port);
+                
+                // Ne pas afficher l'erreur en production, mais la logger
+                if (defined('APP_DEBUG') && APP_DEBUG) {
+                    echo 'Erreur de connexion : ' . $e->getMessage() . '<br />';
+                    echo 'Code : ' . $e->getCode();
+                }
+                
+                // Ne pas définir $pdoCnxBase pour éviter les erreurs "on null"
+                self::$pdoCnxBase = null;
             }
         }
     }
