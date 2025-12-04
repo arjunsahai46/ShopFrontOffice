@@ -19,7 +19,16 @@ define('ROOT_PATH', dirname(__DIR__) . '/');
 // Fonctionne avec localhost/prin_boutique/public/ ou localhost:8000
 $script_name = $_SERVER['SCRIPT_NAME'] ?? '/index.php';
 $script_dir = dirname($script_name);
-$base_asset_path = rtrim($script_dir, '/') ?: '';
+
+// Si on est dans un sous-dossier (ex: /prin_boutique/public/), garder le chemin complet
+// Si on est à la racine (ex: /), utiliser le chemin vide
+$base_asset_path = rtrim($script_dir, '/');
+
+// Si le script est à la racine (/index.php), le chemin de base est vide
+if ($script_dir === '/' || $script_dir === '.') {
+    $base_asset_path = '';
+}
+
 define('BASE_ASSET_PATH', $base_asset_path);
 
 /**
@@ -28,7 +37,16 @@ define('BASE_ASSET_PATH', $base_asset_path);
  */
 if (!function_exists('asset_path')) {
     function asset_path($path) {
-        return BASE_ASSET_PATH . '/' . ltrim($path, '/');
+        $base = BASE_ASSET_PATH;
+        $asset = ltrim($path, '/');
+        
+        // Si BASE_ASSET_PATH est vide, retourner directement le chemin
+        if (empty($base)) {
+            return '/' . $asset;
+        }
+        
+        // Sinon, concaténer avec un slash
+        return $base . '/' . $asset;
     }
 }
 
