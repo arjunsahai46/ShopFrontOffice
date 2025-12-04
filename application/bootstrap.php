@@ -51,6 +51,8 @@ if (!function_exists('asset_path')) {
         }
         
         // Sinon, concaténer avec un slash
+        // S'assurer qu'il n'y a pas de double slash
+        $base = rtrim($base, '/');
         return $base . '/' . $asset;
     }
 }
