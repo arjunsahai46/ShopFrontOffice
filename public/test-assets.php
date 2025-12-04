@@ -85,6 +85,50 @@ function asset_path($path) {
         <p><a href="<?php echo asset_path('css/vendor/bootstrap.min.css'); ?>" target="_blank">Tester CSS Bootstrap</a></p>
         <p><a href="<?php echo asset_path('js/vendor/bootstrap.bundle.min.js'); ?>" target="_blank">Tester JS Bootstrap</a></p>
     </div>
+    
+    <div class="info">
+        <h2>Liste des fichiers dans public/css/vendor/ :</h2>
+        <?php
+        $css_dir = __DIR__ . '/css/vendor/';
+        if (is_dir($css_dir)) {
+            $files = scandir($css_dir);
+            echo '<ul>';
+            foreach ($files as $file) {
+                if ($file !== '.' && $file !== '..') {
+                    $full_path = $css_dir . $file;
+                    $exists = file_exists($full_path);
+                    $size = $exists ? filesize($full_path) : 0;
+                    echo '<li>' . htmlspecialchars($file) . ' - ' . ($exists ? '<span class="success">EXISTS</span> (' . $size . ' bytes)' : '<span class="error">MISSING</span>') . '</li>';
+                }
+            }
+            echo '</ul>';
+        } else {
+            echo '<p class="error">Le répertoire n\'existe pas : ' . htmlspecialchars($css_dir) . '</p>';
+        }
+        ?>
+    </div>
+    
+    <div class="info">
+        <h2>Liste des fichiers dans public/js/vendor/ :</h2>
+        <?php
+        $js_dir = __DIR__ . '/js/vendor/';
+        if (is_dir($js_dir)) {
+            $files = scandir($js_dir);
+            echo '<ul>';
+            foreach ($files as $file) {
+                if ($file !== '.' && $file !== '..') {
+                    $full_path = $js_dir . $file;
+                    $exists = file_exists($full_path);
+                    $size = $exists ? filesize($full_path) : 0;
+                    echo '<li>' . htmlspecialchars($file) . ' - ' . ($exists ? '<span class="success">EXISTS</span> (' . $size . ' bytes)' : '<span class="error">MISSING</span>') . '</li>';
+                }
+            }
+            echo '</ul>';
+        } else {
+            echo '<p class="error">Le répertoire n\'existe pas : ' . htmlspecialchars($js_dir) . '</p>';
+        }
+        ?>
+    </div>
 </body>
 </html>
 
