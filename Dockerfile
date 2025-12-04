@@ -12,6 +12,10 @@ RUN a2enmod rewrite headers
 # Copie du code dans le container
 COPY . /var/www/html
 
+# Vérification que les fichiers statiques sont bien copiés (pour debug)
+RUN ls -la /var/www/html/public/css/vendor/ || echo "CSS vendor directory not found"
+RUN ls -la /var/www/html/public/js/vendor/ || echo "JS vendor directory not found"
+
 # Installation des dépendances Composer (si composer.json existe)
 WORKDIR /var/www/html
 RUN if [ -f composer.json ]; then \
