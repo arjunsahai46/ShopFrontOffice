@@ -88,14 +88,21 @@ class ModelePDO {
             } catch (Exception $e) {
                 // Logger l'erreur pour le débogage
                 error_log('Erreur de connexion PDO: ' . $e->getMessage());
-                error_log('DSN: ' . $dsn);
-                error_log('User: ' . self::$utilisateur);
-                error_log('Host: ' . self::$serveur . ':' . self::$port);
+                error_log('DSN: ' . ($dsn ?? 'NON DÉFINI'));
+                error_log('User: ' . (self::$utilisateur ?: 'VIDE'));
+                error_log('Host: ' . (self::$serveur ?: 'VIDE') . ':' . (self::$port ?: 'VIDE'));
+                error_log('Password: ' . (self::$passe ? 'DÉFINI' : 'VIDE'));
                 
                 // Ne pas afficher l'erreur en production, mais la logger
                 if (defined('APP_DEBUG') && APP_DEBUG) {
                     echo 'Erreur de connexion : ' . $e->getMessage() . '<br />';
                     echo 'Code : ' . $e->getCode();
+                } else {
+                    // En production, rediriger vers une page d'erreur générique
+                    if (!headers_sent()) {
+                        header('Location: /erreur?message=Une+erreur+de+base+de+données+est+survenue.');
+                        exit();
+                    }
                 }
                 
                 // Ne pas définir $pdoCnxBase pour éviter les erreurs "on null"
@@ -186,22 +193,30 @@ class ModelePDO {
 
     protected static function getLesTuplesByTable($table) {
         self::seConnecter();
+        if (self::$pdoCnxBase === null) {
+            error_log('ERREUR: Connexion PDO non établie dans getLesTuplesByTable()');
+            return [];
+        }
         self::$requete = "SELECT * FROM $table";
         self::$pdoStResults = self::$pdoCnxBase->prepare(self::$requete);
         self::$pdoStResults->execute();
-        self::$resultat = self::$pdoResults->fetchAll();
-        self::$pdoResults->closeCursor();
+        self::$resultat = self::$pdoStResults->fetchAll();
+        self::$pdoStResults->closeCursor();
         return self::$resultat;
     }
 
     protected static function getLeTupleTableById($table, $id) {
         self::seConnecter();
+        if (self::$pdoCnxBase === null) {
+            error_log('ERREUR: Connexion PDO non établie dans getLeTupleTableById()');
+            return null;
+        }
         self::$requete = "SELECT * FROM $table WHERE id = :id";
         self::$pdoStResults = self::$pdoCnxBase->prepare(self::$requete);
         self::$pdoStResults->bindValue(':id', $id);
         self::$pdoStResults->execute();
-        self::$resultat = self::$pdoResults->fetch();
-        self::$pdoResults->closeCursor();
+        self::$resultat = self::$pdoStResults->fetch();
+        self::$pdoStResults->closeCursor();
         return self::$resultat;
     }
 
