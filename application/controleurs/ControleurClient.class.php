@@ -1,4 +1,11 @@
 <?php
+/**
+ * ⚠️ CRITIQUE : Charger les dépendances AVANT d'utiliser les classes
+ * Ces includes garantissent que ModelePDO, GestionClient et Database sont disponibles
+ */
+require_once __DIR__ . '/../modeles/ModelePDO.class.php';
+require_once __DIR__ . '/../modeles/GestionClient.class.php';
+require_once __DIR__ . '/../../config/database.php';
 
 class ControleurClient {
     
