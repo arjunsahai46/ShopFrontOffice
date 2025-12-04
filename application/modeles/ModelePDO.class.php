@@ -23,9 +23,25 @@ class ModelePDO {
 
     /**
      * Initialise les paramètres de connexion depuis la classe Database
+     * ⚠️ CRITIQUE : Cette méthode DOIT être appelée après que database.php soit chargé
      */
     private static function initConfig() {
         if (self::$serveur === null) {
+            // Vérifier que la classe Database est disponible
+            if (!class_exists('Database')) {
+                error_log('ERREUR CRITIQUE: Classe Database non trouvée dans initConfig()');
+                error_log('Vérifiez que config/database.php est bien chargé');
+                throw new Exception('Classe Database non disponible - config/database.php non chargé');
+            }
+            
+            // Logs de debug pour diagnostiquer les problèmes de configuration
+            error_log("INITCONFIG: hostname=" . Database::getHostname());
+            error_log("INITCONFIG: username=" . Database::getUsername());
+            error_log("INITCONFIG: database=" . Database::getDatabase());
+            error_log("INITCONFIG: port=" . Database::getPort());
+            error_log("INITCONFIG: password=" . (Database::getPassword() ? 'OK' : 'VIDE'));
+            error_log("INITCONFIG: ssl_mode=" . Database::getSslMode());
+            
             // Utiliser les méthodes de Database qui supportent les variables d'environnement
             self::$serveur = Database::getHostname();
             self::$base = Database::getDatabase();
@@ -34,6 +50,15 @@ class ModelePDO {
             self::$port = Database::getPort();
             self::$ssl_mode = Database::getSslMode();
             self::$ssl_ca = Database::getSslCa();
+            
+            // Vérifier que tous les paramètres critiques sont définis
+            if (empty(self::$serveur) || empty(self::$base) || empty(self::$utilisateur) || empty(self::$passe)) {
+                error_log('ERREUR: Paramètres de connexion incomplets après initConfig()');
+                error_log('Serveur: ' . (self::$serveur ?: 'VIDE'));
+                error_log('Base: ' . (self::$base ?: 'VIDE'));
+                error_log('User: ' . (self::$utilisateur ?: 'VIDE'));
+                error_log('Password: ' . (self::$passe ? 'DEFINI' : 'VIDE'));
+            }
         }
     }
 
