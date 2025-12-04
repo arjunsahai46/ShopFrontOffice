@@ -36,7 +36,7 @@
 
         <!-- Formulaire pour ajouter une catégorie -->
         <h3>Ajouter une catégorie</h3>
-        <form method="POST" action="index.php?controleur=Categories&action=ajouter">
+        <form method="POST" action="<?php echo (BASE_ASSET_PATH ? BASE_ASSET_PATH . '/' : '') . 'index.php?controleur=Categories&action=ajouter'; ?>">
             <label for="libelleCategorie">Nom de la catégorie :</label>
             <input type="text" id="libelleCategorieAjouter" name="libelleCategorie" required>
             <button type="submit" name="ajouter">Ajouter</button>
@@ -44,7 +44,7 @@
 
         <!-- Formulaire pour supprimer une catégorie -->
         <h3>Supprimer une catégorie</h3>
-        <form method="POST" action="index.php?controleur=Categories&action=supprimer">
+        <form method="POST" action="<?php echo (BASE_ASSET_PATH ? BASE_ASSET_PATH . '/' : '') . 'index.php?controleur=Categories&action=supprimer'; ?>">
             <label for="libelleCategorie">Nom de la catégorie :</label>
             <input type="text" id="libelleCategorieSupprimer" name="libelleCategorie" required>
             <button type="submit" name="supprimer">Supprimer</button>
@@ -52,7 +52,7 @@
 
         <!-- Formulaire pour modifier une catégorie -->
         <h3>Modifier une catégorie</h3>
-        <form method="POST" action="index.php?controleur=Categories&action=modifier">
+        <form method="POST" action="<?php echo (BASE_ASSET_PATH ? BASE_ASSET_PATH . '/' : '') . 'index.php?controleur=Categories&action=modifier'; ?>">
             <label for="idCategorie">ID de la catégorie :</label>
             <input type="number" id="idCategorie" name="idCategorie" required>
             <label for="libelleCategorie">Nouveau nom de la catégorie :</label>
