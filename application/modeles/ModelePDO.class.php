@@ -37,6 +37,16 @@ class ModelePDO {
             try {
                 self::initConfig();
                 
+                // Vérifier que les paramètres sont bien définis
+                if (empty(self::$serveur) || empty(self::$base) || empty(self::$utilisateur) || empty(self::$passe)) {
+                    error_log('ERREUR: Paramètres de connexion manquants');
+                    error_log('Serveur: ' . (self::$serveur ?: 'VIDE'));
+                    error_log('Base: ' . (self::$base ?: 'VIDE'));
+                    error_log('User: ' . (self::$utilisateur ?: 'VIDE'));
+                    error_log('Password: ' . (self::$passe ? 'DEFINI' : 'VIDE'));
+                    throw new Exception('Paramètres de connexion à la base de données manquants');
+                }
+                
                 // Construction du DSN avec le port pour Aiven
                 $dsn = 'mysql:host=' . self::$serveur . 
                        ';port=' . self::$port . 
