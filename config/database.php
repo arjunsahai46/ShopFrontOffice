@@ -56,11 +56,12 @@ class Database {
     }
     
     // Configuration Aiven (par défaut)
-    // ⚠️ NE PAS METTRE LE MOT DE PASSE ICI - Utiliser les variables d'environnement
+    // ⚠️ Ces valeurs sont utilisées si les variables d'environnement ne sont pas définies
+    // Sur Render, définir DB_PASSWORD dans les variables d'environnement du dashboard
     const HOSTNAME_DEFAULT = "mysql-shopfront-shopfrontoffice.b.aivencloud.com";  // Host Aiven
     const DATABASE_DEFAULT = "defaultdb";  // Database name Aiven
     const USERNAME_DEFAULT = "avnadmin";  // User Aiven
-    const PASSWORD_DEFAULT = "";  // ⚠️ DOIT être défini via DB_PASSWORD dans les variables d'environnement
+    const PASSWORD_DEFAULT = "";  // ⚠️ DOIT être défini via DB_PASSWORD dans les variables d'environnement Render
     const PORT_DEFAULT = 22674;  // Port Aiven
     const SSL_MODE_DEFAULT = "REQUIRED";  // SSL mode Aiven
     
@@ -99,10 +100,22 @@ class Database {
     
     /**
      * Mot de passe
+     * Priorité : DB_PASSWORD (env) > AIVEN_PASSWORD (env) > PASSWORD_DEFAULT (vide)
+     * ⚠️ CRITIQUE : Sur Render, définir DB_PASSWORD dans le dashboard Render
+     * Valeur à définir : voir RENDER_DB_CONFIG.md
      */
     public static function getPassword() {
-        return self::getEnv('DB_PASSWORD', 
+        $password = self::getEnv('DB_PASSWORD', 
             self::getEnv('AIVEN_PASSWORD', self::PASSWORD_DEFAULT));
+        
+        // Si le mot de passe est vide, logger une erreur critique
+        if (empty($password)) {
+            error_log('ERREUR CRITIQUE: DB_PASSWORD non défini dans les variables d\'environnement');
+            error_log('Sur Render: Dashboard > Environment > Ajouter DB_PASSWORD');
+            error_log('Valeur requise: voir RENDER_DB_CONFIG.md');
+        }
+        
+        return $password;
     }
     
     /**
