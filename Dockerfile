@@ -6,8 +6,8 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 # Installation de Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Active mod_rewrite pour MVC
-RUN a2enmod rewrite
+# Active mod_rewrite pour MVC et mod_headers pour les types MIME
+RUN a2enmod rewrite headers
 
 # Copie du code dans le container
 COPY . /var/www/html
