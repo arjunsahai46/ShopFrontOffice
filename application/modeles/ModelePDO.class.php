@@ -242,6 +242,13 @@ class ModelePDO {
      */
     protected static function isAdminOK($login, $passe) {
         self::seConnecter();
+        
+        // Vérifier que la connexion est bien établie
+        if (self::$pdoCnxBase === null) {
+            error_log('ERREUR: Connexion PDO null dans isAdminOK()');
+            return false;
+        }
+        
         self::$requete = "SELECT * FROM utilisateur where login=:login and passe=:passe";
         self::$pdoStResults = self::$pdoCnxBase->prepare(self::$requete);
         self::$pdoStResults->bindValue('login', $login);
